@@ -82,7 +82,7 @@ input {width: 100%;}
 <h2>Compress GS1 Digital Link</h2>
 <table>
 <tr class="digitalLink"><td class="label">Input: Uncompressed GS1 Digital Link URI</td><td><input id="uncompressedDigitalLinkInput" class="digitalLink" type="text" v-model="uncompressedDigitalLinkInput"></td><td class="charCount">{{uncompressedDigitalLinkInput.length}}</td></tr>
-<tr class="compressedDigitalLink"><td class="label">Output: Compressed GS1 Digital Link URI</td><td><input id="compressedDigitalLink" class="digitalLink" type="text" v-model="compressedDigitalLink"></td><td class="charCount">{{compressedDigitalLink.length}}</td></tr>
+<tr class="compressedDigitalLink"><td class="label">Output: Compressed GS1 Digital Link URI</td><td><input id="compressedDigitalLink" class="compressedDigitalLink" type="text" v-model="compressedDigitalLink"></td><td class="charCount">{{compressedDigitalLink.length}}</td></tr>
 <tr class="options">
 	<td class="label">Options</td>
 	<td colspan="3">Compress non-GS1 key=value pairs from URI query string <select  class="compressOtherKeyValuePairs" v-model="compressOtherKeyValuePairs"><option value="true">Yes</option><option value="false">No</option></select></td>
@@ -94,7 +94,7 @@ input {width: 100%;}
 &nbsp;<br/>
 <h2>Decompress GS1 Digital Link</h2>
 <table>
-<tr class="compressedDigitalLink"><td class="label">Input: Compressed GS1 Digital Link URI</td><td><input id="compressedDigitalLinkInput2" class="digitalLink" type="text" v-model="compressedDigitalLinkInput2"></td><td class="charCount">{{compressedDigitalLinkInput2.length}}</td></tr>
+<tr class="compressedDigitalLink"><td class="label">Input: Compressed GS1 Digital Link URI</td><td><input id="compressedDigitalLinkInput2" class="compressedDigitalLink" type="text" v-model="compressedDigitalLinkInput2"></td><td class="charCount">{{compressedDigitalLinkInput2.length}}</td></tr>
 <tr class="digitalLink"><td class="label">Output: Uncompressed GS1 Digital Link URI</td><td><input id="uncompressedDigitalLinkOutput" class="digitalLink" type="text" v-model="uncompressedDigitalLinkOutput"></td><td class="charCount">{{uncompressedDigitalLinkOutput.length}}</td></tr>
 <tr class="errorMessage" v-show="error4 !== ''"><td class="label">Error:</td><td colspan="2"><textarea class="errorMessage" v-model="error4"></textarea></td></tr>
 </table>
