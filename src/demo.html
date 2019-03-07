@@ -1,0 +1,266 @@
+<html>
+<head>
+<title>Demo page for https://github.com/gs1/GS1DigitalLinkToolkit.js</title>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="GS1DigitalLinkToolkit.js"></script>
+<style type="text/css">
+body { background-color: #FFFFFF; font-size: 1en; font-family: Arial, Helvetica, Geneva, sans-serif; }
+h1 { text-align: center; }
+table { width: 100%; }
+td.label { width: 14em; }
+td.demobutton { width: 4em; }
+td.demobutton2 { width: 8em; }
+td.charCount {text-align: right;}
+tr.elementString { background-color: #CCCCFF;}
+tr.options { background-color: #EEEEEE;}
+tr.digitalLink { background-color: #FFD9CC;}
+tr.compressedDigitalLink { background-color: #FFD999;}
+tr.spacer {background-color: #FFFFFF; height: 1en;}
+tr.errorMessage { background-color: #FF0000; color: #FFFFFF;}
+input.elementString { background-color: #CCCCFF; font-size: 1em;}
+input.digitalLink { background-color: #FFD9CC; font-size: 1em;}
+input.compressedDigitalLink { background-color: #FFD999; font-size: 1em;}
+textarea.errorMessage { background-color: #FFEEEE; font-size: 1em; height: 3em; width: 100%;}
+select.elementString { background-color: #CCCCFF; font-size: 1em}
+select.digitalLink { background-color: #FFD9CC; font-size: 1em}
+
+input {width: 100%;}
+</style>
+</head>
+<body>
+<h1>Simple demo page for GS1DigitalLinkToolkit.js</h1>
+<p>This simple demo page can be further developed to add further features.
+<br>It uses <a href="https://github.com/gs1/GS1DigitalLinkToolkit.js" target="_blank">GS1DigitalLinkToolkit.js</a> to translate between GS1 element strings and GS1 Digital Link URI syntax.
+<br>It uses <a href="https://vuejs.org/" target="_blank">vue.js</a> to update the Web page in real time, all client-side.</p>
+&nbsp;<br/>
+<hr/>
+&nbsp;<br/>
+<div id="app1">
+<h2>Convert GS1 element strings to GS1 Digital Link URI</h2>
+<table>
+<tr class="elementString"><td class="label">Input: Element string</td><td><input class="elementString" type="text" v-model="elementStringInput"></td><td class="demobutton"><input class="elementString" type="button" value="Example" @click="demo1"></td></tr>
+<tr class="options"><td class="label">Options</td><td colspan="2">Use alphabetic short names e.g. /gtin/ <select  class="digitalLink" v-model="shortnames"><option value="true">Yes</option><option value="false">No</option></select><br>Omit primary key from compression e.g. /gtin/ <select  class="digitalLink" v-model="uncompressedPrimary"><option value="true">Yes</option><option value="false">No</option></select><br>Use optimisations <select  class="digitalLink" v-model="useOptimisations"><option value="true">Yes</option><option value="false">No</option></select><br>Custom URI stem&nbsp;<input type="text" class="digitalLink" v-model="uristem" style="width: 80%"></td></tr>
+<tr class="spacer"><td colspan="3">&nbsp;</td></tr>
+<tr class="digitalLink" v-show="digitalLinkOutput !== ''"><td class="label">Output: GS1 Digital Link URI</td><td><input class="digitalLink" type="text" v-model="digitalLinkOutput"></td><td class="charCount">{{digitalLinkOutput.length}}</td></tr>
+<tr class="compressedDigitalLink" v-show="compressedDigitalLinkOutput !== ''"><td class="label">Output: Compressed GS1 Digital Link URI</td><td><input class="compressedDigitalLink" type="text" v-model="compressedDigitalLinkOutput"></td><td class="charCount">{{compressedDigitalLinkOutput.length}}</td></tr>
+<tr class="errorMessage" v-show="error1 !== ''"><td class="label">Error:</td><td colspan="2"><textarea class="errorMessage" v-model="error1"></textarea></td></tr>
+</table>
+&nbsp;<br/>
+<hr/>
+&nbsp;<br/>
+<h2>Convert GS1 Digital Link URI to GS1 element strings</h2>
+<table>
+<tr class="compressedDigitalLink">
+	<td class="label">Input: Compressed GS1 Digital Link URI</td>
+	<td><input  class="compressedDigitalLink" type="text" v-model="compressedDigitalLinkInput"></td>
+	<td class="demobutton2"><input  class="compressedDigitalLink" type="button" value="Copy compressed DL from above"  @click="copy3"></td>
+	<td  class="demobutton"><input  class="compressedDigitalLink" type="button" value="Example"  @click="demo3"></td>
+</tr>
+<tr class="digitalLink">
+	<td class="label">Input: GS1 Digital Link URI</td>
+	<td><input  class="digitalLink" type="text" v-model="digitalLinkInput"></td>
+	<td class="demobutton2"><input  class="digitalLink" type="button" value="Copy Digital Link from above"  @click="copy4"></td>
+	<td class="demobutton"><input  class="digitalLink" type="button" value="Example"  @click="demo2"></td>
+</tr>
+<tr class="options">
+	<td class="label">Options</td>
+	<td colspan="3">Use brackets / human-readable output <select  class="elementString" v-model="brackets"><option value="true">Yes</option><option value="false">No</option></select></td>
+</tr>
+<tr class="spacer"><td colspan="4">&nbsp;</td></tr>
+<tr class="elementString" v-show="elementStringOutput !== ''">
+	<td class="label">Output: Element string</td>
+	<td colspan="3"><input class="elementString" type="text" v-model="elementStringOutput"></td>
+</tr>
+<tr class="errorMessage" v-show="error2 !== ''">
+	<td class="label">Error:</td>
+	<td colspan="3"><textarea class="errorMessage" v-model="error2"></textarea></td>
+</tr>
+</table>
+&nbsp;<br/>
+<hr/>
+&nbsp;<br/>
+<h2>Compress GS1 Digital Link</h2>
+<table>
+<tr class="digitalLink"><td class="label">Input: Uncompressed GS1 Digital Link URI</td><td><input id="uncompressedDigitalLinkInput" class="digitalLink" type="text" v-model="uncompressedDigitalLinkInput"></td><td class="charCount">{{uncompressedDigitalLinkInput.length}}</td></tr>
+<tr class="compressedDigitalLink"><td class="label">Output: Compressed GS1 Digital Link URI</td><td><input id="compressedDigitalLink" class="digitalLink" type="text" v-model="compressedDigitalLink"></td><td class="charCount">{{compressedDigitalLink.length}}</td></tr>
+<tr class="options">
+	<td class="label">Options</td>
+	<td colspan="3">Compress non-GS1 key=value pairs from URI query string <select  class="compressOtherKeyValuePairs" v-model="compressOtherKeyValuePairs"><option value="true">Yes</option><option value="false">No</option></select></td>
+</tr>
+<tr class="errorMessage" v-show="error3 !== ''"><td class="label">Error:</td><td colspan="2"><textarea class="errorMessage" v-model="error3"></textarea></td></tr>
+</table>
+&nbsp;<br/>
+<hr/>
+&nbsp;<br/>
+<h2>Decompress GS1 Digital Link</h2>
+<table>
+<tr class="compressedDigitalLink"><td class="label">Input: Compressed GS1 Digital Link URI</td><td><input id="compressedDigitalLinkInput2" class="digitalLink" type="text" v-model="compressedDigitalLinkInput2"></td><td class="charCount">{{compressedDigitalLinkInput2.length}}</td></tr>
+<tr class="digitalLink"><td class="label">Output: Uncompressed GS1 Digital Link URI</td><td><input id="uncompressedDigitalLinkOutput" class="digitalLink" type="text" v-model="uncompressedDigitalLinkOutput"></td><td class="charCount">{{uncompressedDigitalLinkOutput.length}}</td></tr>
+<tr class="errorMessage" v-show="error4 !== ''"><td class="label">Error:</td><td colspan="2"><textarea class="errorMessage" v-model="error4"></textarea></td></tr>
+</table>
+
+
+
+</div>
+<script language="javascript">
+var digitalLinkInput = "";
+var compressedDigitalLinkInput = "";
+var compressedDigitalLinkInput2 = "";
+var uncompressedDigitalLinkInput = "";
+var compressedDigitalLink = "";
+var uncompressedDigitalLink = "";
+var elementStringInput = "";
+var uncompressedDigitalLinkOutput = "";
+var error1 = "";
+var error2 = "";
+var error3 = "";
+var error4 = "";
+var shortnames="true";
+var uristem="http://example.org";
+var useOptimisations = "false";
+var uncompressedPrimary = "false";
+var compressOtherKeyValuePairs="false";
+var brackets="true";
+var gs1dlt = new GS1DigitalLinkToolkit();
+
+
+
+
+	var app1 = new Vue({
+		el: "#app1",
+		data : {
+			elementStringInput : elementStringInput,
+			digitalLinkInput : digitalLinkInput,
+			compressedDigitalLinkInput : compressedDigitalLinkInput,
+			compressedDigitalLinkInput2 : compressedDigitalLinkInput2,
+			uncompressedDigitalLinkInput : uncompressedDigitalLinkInput,
+			error1: error1,
+			error2: error2,
+			error3: error3,
+			error4: error4,
+			gs1dlt : gs1dlt,
+			shortnames: shortnames,
+			uristem: uristem,
+			useOptimisations : useOptimisations,
+			uncompressedPrimary : uncompressedPrimary,
+			brackets: brackets,
+			compressOtherKeyValuePairs : compressOtherKeyValuePairs
+		},
+		computed : {
+			digitalLinkOutput : function() {
+				if (this.elementStringInput !== "") {
+					try {
+						this.error1="";
+						return gs1dlt.gs1ElementStringsToGS1DigitalLink(this.elementStringInput, (this.shortnames =="true"), this.uristem);			
+					} catch(err) {
+						this.digitalLinkOutput="";
+						this.error1=err+"\n"+err.stack;
+						return "";
+					}
+				} else {
+				return "";
+				}
+			},
+			compressedDigitalLinkOutput : function() {
+				if (this.elementStringInput !== "") {
+					try {
+						this.error1="";
+						return gs1dlt.gs1ElementStringsToCompressedGS1DigitalLink(this.elementStringInput, (this.shortnames =="true"), this.uristem, (this.uncompressedPrimary=="true") , (this.useOptimisations=="true") );			
+					} catch(err) {
+						this.digitalLinkOutput="";
+						this.error1=err+"\n"+err.stack;
+						return "";
+					}
+				} else {
+				return "";
+				}
+			},			
+			elementStringOutput : function() {
+				if (this.digitalLinkInput !== "") {
+					try {
+						this.error2="";
+						return gs1dlt.gs1digitalLinkToGS1elementStrings(this.digitalLinkInput, (this.brackets =="true"));
+					} catch(err) {
+						this.elementStringOutput="";
+						this.error2=err+"\n"+err.stack;
+						return "";
+					}
+				}
+				if (this.compressedDigitalLinkInput !=="") {
+					try {
+						this.error2="";
+						return gs1dlt.gs1compressedDigitalLinkToGS1elementStrings(this.compressedDigitalLinkInput, (this.brackets == "true"));
+					} catch(err) {
+						this.elementStringOutput="";
+						this.error2=err+"\n"+err.stack;
+						return "";
+					}
+					
+				}
+				if ((this.digitalLinkInput == "") && (this.compressedDigitalLinkInput =="")) {
+					return "";
+				}
+				
+				
+			},
+			compressedDigitalLink : function() {
+				if (this.uncompressedDigitalLinkInput !== "") {
+					try {
+						this.error3="";
+						return gs1dlt.compressGS1DigitalLink(this.uncompressedDigitalLinkInput,(this.shortnames =="true"),this.uristem,(this.uncompressedPrimary=="true"),(this.useOptimisations=="true"),(this.compressOtherKeyValuePairs=="true"));
+					} catch(err) {
+						this.error3=err+"\n"+err.stack;
+						return "";
+					}
+
+				
+				} else {
+					return "";
+				}
+			},
+			uncompressedDigitalLinkOutput : function() {
+				if (this.compressedDigitalLinkInput2 !== "") {
+					console.log("compressedDigitalLinkInput2 = "+this.compressedDigitalLinkInput2);
+					try {
+						this.error4="";
+						return gs1dlt.decompressGS1DigitalLink(this.compressedDigitalLinkInput2,(this.shortnames =="true"),this.uristem)
+					} catch(err) {
+						this.error4=err+"\n"+err.stack;
+						return "";
+					}	
+				} else {
+					return "";
+				}
+			}
+			
+		},
+		methods : {
+			demo1 : function() {
+				// this.elementStringInput="(3103)000189(01)05412345000013(3923)2172(10)ABC&+123";
+				// this.elementStringInput="(01)05412345000013(10)ABC&+123"; // this can use compression optimisation
+				 this.elementStringInput="(01)05412345000013(10)ABC&+123(7003)1903061658"; // this can use compression optimisation
+				//this.elementStringInput="(01)05412345000013(10)ABC&+123(17)190306";
+			},
+			demo2 : function() {
+				this.digitalLinkInput="https://example.org/gtin/054123450013/lot/ABC%26%2B123?3103=000189&3923=2172";
+			},
+			demo3 : function() {
+				this.compressedDigitalLinkInput="http://example.org/ENEGFDTK2LJmYgYAF6ckaEPgCE7CjmsE0";
+			},
+			copy3 : function() {
+				this.digitalLinkInput="";
+				this.compressedDigitalLinkInput=this.compressedDigitalLinkOutput;
+				
+			},
+			copy4 : function() {
+				this.compressedDigitalLinkInput="";
+				this.digitalLinkInput=this.digitalLinkOutput;
+			}
+
+		}
+	});
+
+
+</script>
+</body>
+</html>
