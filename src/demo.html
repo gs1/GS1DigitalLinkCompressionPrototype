@@ -330,7 +330,7 @@ var gs1dlt = new GS1DigitalLinkToolkit();
 			},
 			structuredOutput: function() {
 				if (this.testDigitalLinkInput !== "") {
-				 return gs1dlt.analyzeURI(this.testDigitalLinkInput,true).structuredOutput;
+				 return JSON.stringify(gs1dlt.analyzeURI(this.testDigitalLinkInput,true).structuredOutput);
 				} else {
 				 return "";
 				}			
