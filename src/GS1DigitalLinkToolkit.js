@@ -897,7 +897,7 @@ class GS1DigitalLinkToolkit {
 					let gs1AIarray = extracted.GS1;
 					let otherArray = extracted.other;
 					let structuredArray = this.buildStructuredArray(gs1AIarray,otherArray);	
-					rv.structuredOutput=JSON.stringify(structuredArray);
+					rv.structuredOutput=structuredArray;
 					rv.elementStringsOutput=this.gs1digitalLinkToGS1elementStrings(gs1DigitalLinkURI,true);
 				}
 			}
@@ -914,7 +914,7 @@ class GS1DigitalLinkToolkit {
 					let gs1AIarray = extracted.GS1;
 					let otherArray = extracted.other;
 					let structuredArray = this.buildStructuredArray(gs1AIarray,otherArray);	
-					rv.structuredOutput=JSON.stringify(structuredArray);
+					rv.structuredOutput=structuredArray;
 					rv.elementStringsOutput=this.gs1compressedDigitalLinkToGS1elementStrings(gs1DigitalLinkURI,true);
 				}
 			}
@@ -930,7 +930,7 @@ class GS1DigitalLinkToolkit {
 				let gs1AIarray = extracted.GS1;
 				let otherArray = extracted.other;
 				let structuredArray = this.buildStructuredArray(gs1AIarray,otherArray);	
-				rv.structuredOutput=JSON.stringify(structuredArray);
+				rv.structuredOutput=structuredArray;
 				rv.elementStringsOutput=this.gs1compressedDigitalLinkToGS1elementStrings(gs1DigitalLinkURI,true);
 			}
 		}
@@ -938,6 +938,76 @@ class GS1DigitalLinkToolkit {
 		return rv;
 	}
 
+/*
+	splitURIintoComponents(gs1DigitalLinkURI) {
+		let rv={};
+		let cursor=0;
+		let queryString="";
+		let uriPathInfo="";
+	
+		// strip off https:// or http:// 
+		if (gs1DigitalLinkURI.indexOf("http://") == 0) { cursor=7 }
+		if (gs1DigitalLinkURI.indexOf("https://") == 0) { cursor=8 }
+
+		let firstSlash = gs1DigitalLinkURI.substr(cursor).indexOf("/");
+		let firstQuestionMark = gs1DigitalLinkURI.substr(cursor).indexOf("?");
+	
+		if (firstQuestionMark > -1) {
+			queryString = gs1DigitalLinkURI.substr(cursor).substr(1+firstQuestionMark);
+			uriPathInfo = gs1DigitalLinkURI.substr(cursor).substring(firstSlash,firstQuestionMark);
+		} else {
+			uriPathInfo = gs1DigitalLinkURI.substr(cursor).substr(firstSlash);
+			let firstFragment = uriPathInfo.indexOf("#");
+			if (firstFragment > -1) {
+				uriPathInfo = uriPathInfo.substring(0,firstFragment);
+			}
+		}
+
+		// if semicolon was used as delimiter between key=value pairs, replace with ampersand as delimiter
+		queryString = queryString.replace(new RegExp(";", 'g'),"&");
+
+		let firstFragment = queryString.indexOf("#");
+		if (firstFragment > -1) {
+			queryString = queryString.substring(0,firstFragment);
+		}
+
+		// process URI path information
+		let pathCandidates={};
+		let pathElements = uriPathInfo.substr(1).split("/");
+		let l = pathElements.length;
+		let pathElementIndex=l-2;
+		while (pathElementIndex >= 0) {
+			pathCandidates[pathElements[pathElementIndex]]=this.percentDecode(pathElements[1+pathElementIndex]);
+			pathElementIndex-=2;
+		}
+
+		let queryStringCandidates={};
+		if (queryString !== "") {
+			
+			let pairs = queryString.split("&");
+			for (let i=0; i<pairs.length; i++) {
+				let p = pairs[i].split("=");
+				if ((p[0] !== null) && (p[1] !== null)) {
+				
+					if (this.shortCodeToNumeric.hasOwnProperty(p[0])) {
+						queryStringCandidates[this.shortCodeToNumeric[p[0]]]=this.percentDecode(p[1]);
+						delete queryStringCandidates[p[0]];
+					} else {
+						queryStringCandidates[p[0]]=this.percentDecode(p[1]);
+					}
+				
+				}
+			}
+		}
+	
+		rv.queryString=queryString;
+		rv.uriPathInfo=uriPathInfo;
+		rv.pathCandidates=pathCandidates;
+		rv.queryStringCandidates=queryStringCandidates;
+		return rv;
+	}
+
+*/
 
 	// this method converts a GS1 Digital Link URI into an associative array of GS1 Application Identifiers and their values
 	// it is the inverse function of buildGS1gs1DigitalLinkURI(gs1AIarray,useShortText,uriStem)
