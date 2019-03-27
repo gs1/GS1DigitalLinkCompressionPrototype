@@ -273,7 +273,7 @@ var gs1dlt = new GS1DigitalLinkToolkit();
 			analysis: function() {
 
 				if (this.testDigitalLinkInput !== "") {
-				 return gs1dlt.analyzeURI(this.testDigitalLinkInput,false);
+				 return gs1dlt.analyseURI(this.testDigitalLinkInput,false);
 				} else {
 				 return null;
 				}			
@@ -330,14 +330,14 @@ var gs1dlt = new GS1DigitalLinkToolkit();
 			},
 			structuredOutput: function() {
 				if (this.testDigitalLinkInput !== "") {
-				 return JSON.stringify(gs1dlt.analyzeURI(this.testDigitalLinkInput,true).structuredOutput);
+				 return JSON.stringify(gs1dlt.analyseURI(this.testDigitalLinkInput,true).structuredOutput);
 				} else {
 				 return "";
 				}			
 			},
 			elementStringsOutput: function() {
 				if (this.testDigitalLinkInput !== "") {
-				 return gs1dlt.analyzeURI(this.testDigitalLinkInput,true).elementStringsOutput;
+				 return gs1dlt.analyseURI(this.testDigitalLinkInput,true).elementStringsOutput;
 				} else {
 				 return "";
 				}			
