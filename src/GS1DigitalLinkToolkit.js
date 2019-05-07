@@ -22,6 +22,24 @@ class GS1DigitalLinkToolkit {
 		const tableOpt = {"0A":["01","22"],"0B":["01","10"],"0C":["01","21"],"0D":["01","17"],"0E":["01","7003"],"0F":["01","30"],"1A":["01","10","21","17"],"1B":["01","15"],"1C":["01","11"],"1D":["01","16"],"1E":["01","91"],"1F":["01","10","15"],"2A":["01","3100"],"2B":["01","3101"],"2C":["01","3102"],"2D":["01","3103"],"2E":["01","3104"],"2F":["01","3105"],"3A":["01","3200"],"3B":["01","3201"],"3C":["01","3202"],"3D":["01","3203"],"3E":["01","3204"],"3F":["01","3205"],"9A":["8010","8011"],"9B":["8017","8019"],"9C":["8018","8019"],"9D":["414","254"],"A0":["01","3920"],"A1":["01","3921"],"A2":["01","3922"],"A3":["01","3923"],"A4":["01","3924"],"A5":["01","3925"],"A6":["01","3926"],"A7":["01","3927"],"A8":["01","3928"],"A9":["01","3929"],"C0":["255","3900"],"C1":["255","3901"],"C2":["255","3902"],"C3":["255","3903"],"C4":["255","3904"],"C5":["255","3905"],"C6":["255","3906"],"C7":["255","3907"],"C8":["255","3908"],"C9":["255","3909"],"CA":["255","3940"],"CB":["255","3941"],"CC":["255","3942"],"CD":["255","3943"]}
 
 
+		const instanceIdentifiersAndQualifiers = {"01":["21","235"],"00": null}; // this is incomplete but sufficient for initial testing
+		// TODO extend instanceIdentifiersAndQualifiers fully.  Format is primary key : null or list of AIs of which one must be specified.
+		
+		const stringSemantics = {"01":["gs1:gtin","schema:gtin"], "10":["gs1:hasBatchLot"], "21":["gs1:hasSerialNumber"], "235":["gs1:hasThirdPartyControlledSerialNumber"], "22":["gs1:consumerProductVariant"]};
+		
+		const classSemantics = {"01":["gs1:Product","schema:Product"],"8006":["gs1:Product","schema:Product"],"414":["gs1:Place","schema:Place"],"417":["gs1:Organization","schema:Organization"]};
+		
+		const dateSemantics = {"11":["gs1:productionDate"], "12":["gs1:dueDate"], "13":["gs1:packagingDate"], "15":["gs1:bestBeforeDate"], "16": ["gs1:sellByDate"], "17":["gs1:expirationDate"]};
+		
+		const dateTimeSecondsSemantics = {"8008":["gs1:productionDateTime"] }; 
+		const dateTimeMinutesSemantics = {"7003": ["gs1:expirationDateTime"] }; 
+		const dateRangeSemantics = {"7007":["gs1:harvestDate"]};
+		
+		const quantitativeValueSemantics = {"3100":{"p":["gs1:netWeight"],"rec20":"KGM"},"3101":{"p":["gs1:netWeight"],"rec20":"KGM"},"3102":{"p":["gs1:netWeight"],"rec20":"KGM"},"3103":{"p":["gs1:netWeight"],"rec20":"KGM"},"3104":{"p":["gs1:netWeight"],"rec20":"KGM"},"3105":{"p":["gs1:netWeight"],"rec20":"KGM"},"3200":{"p":["gs1:netWeight"],"rec20":"LBR"},"3201":{"p":["gs1:netWeight"],"rec20":"LBR"},"3202":{"p":["gs1:netWeight"],"rec20":"LBR"},"3203":{"p":["gs1:netWeight"],"rec20":"LBR"},"3204":{"p":["gs1:netWeight"],"rec20":"LBR"},"3205":{"p":["gs1:netWeight"],"rec20":"LBR"},"3560":{"p":["gs1:netWeight"],"rec20":"APZ"},"3561":{"p":["gs1:netWeight"],"rec20":"APZ"},"3562":{"p":["gs1:netWeight"],"rec20":"APZ"},"3563":{"p":["gs1:netWeight"],"rec20":"APZ"},"3564":{"p":["gs1:netWeight"],"rec20":"APZ"},"3565":{"p":["gs1:netWeight"],"rec20":"APZ"},"3570":{"p":["gs1:netWeight"],"rec20":"ONZ"},"3571":{"p":["gs1:netWeight"],"rec20":"ONZ"},"3572":{"p":["gs1:netWeight"],"rec20":"ONZ"},"3573":{"p":["gs1:netWeight"],"rec20":"ONZ"},"3574":{"p":["gs1:netWeight"],"rec20":"ONZ"},"3575":{"p":["gs1:netWeight"],"rec20":"ONZ"},"3300":{"p":["gs1:grossWeight"],"rec20":"KGM"},"3301":{"p":["gs1:grossWeight"],"rec20":"KGM"},"3302":{"p":["gs1:grossWeight"],"rec20":"KGM"},"3303":{"p":["gs1:grossWeight"],"rec20":"KGM"},"3304":{"p":["gs1:grossWeight"],"rec20":"KGM"},"3305":{"p":["gs1:grossWeight"],"rec20":"KGM"},"3400":{"p":["gs1:grossWeight"],"rec20":"LBR"},"3401":{"p":["gs1:grossWeight"],"rec20":"LBR"},"3402":{"p":["gs1:grossWeight"],"rec20":"LBR"},"3403":{"p":["gs1:grossWeight"],"rec20":"LBR"},"3404":{"p":["gs1:grossWeight"],"rec20":"LBR"},"3405":{"p":["gs1:grossWeight"],"rec20":"LBR"},"3150":{"p":["gs1:netContent"],"rec20":"LTR"},"3151":{"p":["gs1:netContent"],"rec20":"LTR"},"3152":{"p":["gs1:netContent"],"rec20":"LTR"},"3153":{"p":["gs1:netContent"],"rec20":"LTR"},"3154":{"p":["gs1:netContent"],"rec20":"LTR"},"3155":{"p":["gs1:netContent"],"rec20":"LTR"},"3160":{"p":["gs1:netContent"],"rec20":"MTQ"},"3161":{"p":["gs1:netContent"],"rec20":"MTQ"},"3162":{"p":["gs1:netContent"],"rec20":"MTQ"},"3163":{"p":["gs1:netContent"],"rec20":"MTQ"},"3164":{"p":["gs1:netContent"],"rec20":"MTQ"},"3165":{"p":["gs1:netContent"],"rec20":"MTQ"},"3600":{"p":["gs1:netContent"],"rec20":"QT"},"3601":{"p":["gs1:netContent"],"rec20":"QT"},"3602":{"p":["gs1:netContent"],"rec20":"QT"},"3603":{"p":["gs1:netContent"],"rec20":"QT"},"3604":{"p":["gs1:netContent"],"rec20":"QT"},"3605":{"p":["gs1:netContent"],"rec20":"QT"},"3610":{"p":["gs1:netContent"],"rec20":"GLL"},"3611":{"p":["gs1:netContent"],"rec20":"GLL"},"3612":{"p":["gs1:netContent"],"rec20":"GLL"},"3613":{"p":["gs1:netContent"],"rec20":"GLL"},"3614":{"p":["gs1:netContent"],"rec20":"GLL"},"3615":{"p":["gs1:netContent"],"rec20":"GLL"},"3650":{"p":["gs1:netContent"],"rec20":"FTQ"},"3651":{"p":["gs1:netContent"],"rec20":"FTQ"},"3652":{"p":["gs1:netContent"],"rec20":"FTQ"},"3653":{"p":["gs1:netContent"],"rec20":"FTQ"},"3654":{"p":["gs1:netContent"],"rec20":"FTQ"},"3655":{"p":["gs1:netContent"],"rec20":"FTQ"},"3640":{"p":["gs1:netContent"],"rec20":"INQ"},"3641":{"p":["gs1:netContent"],"rec20":"INQ"},"3642":{"p":["gs1:netContent"],"rec20":"INQ"},"3643":{"p":["gs1:netContent"],"rec20":"INQ"},"3644":{"p":["gs1:netContent"],"rec20":"INQ"},"3645":{"p":["gs1:netContent"],"rec20":"INQ"},"3660":{"p":["gs1:netContent"],"rec20":"YDQ"},"3661":{"p":["gs1:netContent"],"rec20":"YDQ"},"3662":{"p":["gs1:netContent"],"rec20":"YDQ"},"3663":{"p":["gs1:netContent"],"rec20":"YDQ"},"3664":{"p":["gs1:netContent"],"rec20":"YDQ"},"3665":{"p":["gs1:netContent"],"rec20":"YDQ"}};
+		// TODO - complete quantitativeValueSemantics table - see Excel spreadsheet
+		
+	
+
 		// safeBase64Alphabet is a modified URI-safe Base64 alphabet used in the compression methods for converting the binary string to/from an alphanumeric representation that contains no characters that are restricted in URIs
 		const safeBase64Alphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
 
@@ -250,6 +268,14 @@ class GS1DigitalLinkToolkit {
 		this.tableOptReverse = tableOptReverse;
 		this.safeBase64Alphabet = safeBase64Alphabet;
 		this.hexAlphabet = hexAlphabet;
+		this.instanceIdentifiersAndQualifiers = instanceIdentifiersAndQualifiers;
+		this.classSemantics = classSemantics;
+		this.stringSemantics = stringSemantics;
+		this.dateSemantics = dateSemantics;
+		this.dateTimeSecondsSemantics = dateTimeSecondsSemantics;
+		this.dateTimeMinutesSemantics = dateTimeMinutesSemantics;
+		this.quantitativeValueSemantics = quantitativeValueSemantics;
+		this.dateRangeSemantics = dateRangeSemantics;
 
 		this.AIsByLength=[];
 		for (let i=2; i<=4; i++) {
@@ -746,6 +772,344 @@ class GS1DigitalLinkToolkit {
 		return map;
 	}
 	
+	
+	analyseURIsemantics(gs1DigitalLinkURI) {
+		let rv=this.analyseURI(gs1DigitalLinkURI,true);
+		let uncompressedDL=gs1DigitalLinkURI;
+				
+		if ((rv.detected == "fully compressed GS1 Digital Link") || (rv.detected == "partially compressed GS1 Digital Link")) {
+			uncompressedDL=this.decompressGS1DigitalLink(gs1DigitalLinkURI,false,rv.uriStem);	
+		}
+		let qpos=uncompressedDL.indexOf("?");
+		let excludeQueryString=uncompressedDL.substr(0,qpos);
+		let rv2=this.analyseURI(excludeQueryString,false);
+
+		
+		let identifiers = rv.structuredOutput.identifiers;
+		let qualifiers = rv.structuredOutput.qualifiers;
+		let dataAttributes = rv.structuredOutput.dataAttributes;
+		let nonID={};
+		let elementStrings={};
+		for (let q in qualifiers) {
+			let k = Object.keys(qualifiers[q]);
+			for (let ki in k) {
+				nonID[k[ki]] = qualifiers[q][k[ki]];
+				elementStrings[k[ki]] = qualifiers[q][k[ki]];
+			}
+		}
+		for (let a in dataAttributes) {
+			let m = Object.keys(dataAttributes[a]);
+			for (let ki in m) {
+				nonID[m[ki]] = dataAttributes[a][m[ki]];
+				elementStrings[m[ki]] = dataAttributes[a][m[ki]];
+			}
+		}
+		for (let i in identifiers) {
+			let k = Object.keys(identifiers[i]);
+			for (let ki in k) {
+				elementStrings[k[ki]] = identifiers[i][k[ki]];
+			}		
+		}
+		
+		
+		rv.nonID = nonID;
+		let nonIDKeys = Object.keys(rv.nonID);		
+		let aiKeys = Object.keys(elementStrings);
+		
+
+		rv.primaryIdentifierMap = rv.structuredOutput.identifiers[0];
+		
+		let pimK = Object.keys(rv.primaryIdentifierMap);
+		
+		rv.primaryIdentifier = pimK[0];
+		
+		let iiaqK = Object.keys(this.instanceIdentifiersAndQualifiers);
+		let isInstanceIdentifier=false;
+		let outputObject={};
+
+		let context={"schema":"http://schema.org/","gs1":"https://gs1.org/voc/","rdf":"http://www.w3.org/1999/02/22-rdf-syntax-ns#","rdfs":"http://www.w3.org/2000/01/rdf-schema#","owl":"http://www.w3.org/2002/07/owl#","dcterms":"http://purl.org/dc/terms/","xsd":"http://www.w3.org/2001/XMLSchema#","skos":"http://www.w3.org/2004/02/skos/core#","gs1:value":{"@type":"xsd:float"}};
+
+				
+		if (iiaqK.includes(rv.primaryIdentifier)) {
+			let iiaqV = this.instanceIdentifiersAndQualifiers[rv.primaryIdentifier];
+			if (iiaqV == null) {
+			  isInstanceIdentifier=true;
+			} else {
+				for (let v in iiaqV) {
+				  if (nonIDKeys.includes(iiaqV[v])) {
+				  	isInstanceIdentifier=true;
+				  }
+				}
+			}
+		}
+		
+		if (isInstanceIdentifier) {
+		outputObject["@id"]=excludeQueryString; // this is now the uncompressed GS1 Digital Link without the query string
+		outputObject["owl:sameAs"]=[uncompressedDL,gs1DigitalLinkURI];
+		} else {
+		outputObject["@id"]="_:1";
+		}
+
+		rv.isInstanceIdentifier = isInstanceIdentifier;
+		
+		let csK = Object.keys(this.classSemantics);
+		let ssK = Object.keys(this.stringSemantics);
+		let qvK = Object.keys(this.quantitativeValueSemantics);
+		let dvK = Object.keys(this.dateSemantics);
+		let dtsvK = Object.keys(this.dateTimeSecondsSemantics);
+		let dtmvK = Object.keys(this.dateTimeMinutesSemantics);
+		let drK = Object.keys(this.dateRangeSemantics);
+		
+		// handle AIs for which class semantics are defined
+		
+		let otype = ["rdfs:Class","owl:Class"];
+		for (let i in csK) {
+			if (aiKeys.includes(csK[i])) {
+				let c = this.classSemantics[csK[i]];
+				otype=otype.concat(c);
+			}
+		}		
+		outputObject["@type"]=otype;
+		
+		
+		// walk up the path information
+		let uriStem=rv2.uriStem;
+		let pathComponents=rv2.pathComponents.substr(1).split("/");
+		if ((pathComponents.length > 2) && ((pathComponents.length%2) ==0)) {
+			let l = pathComponents.length-2;
+			let superClasses=[];
+			do {
+			let sl=pathComponents.slice(0,l);
+			let superClass=uriStem+"/"+sl.join("/");
+			superClasses.push({"@id":superClass});
+			l=l-2;
+			} while (l >= 2);
+			if (superClasses.length > 0) {
+			outputObject["dcterms:isPartOf"]=superClasses;
+			outputObject["rdfs:subClassOf"]=superClasses;
+			}
+
+		
+		}
+		
+		
+		
+		
+		// handle AIs and predicates that expect a string value
+		
+		for (let i in ssK) {
+			if (aiKeys.includes(ssK[i])) {
+				for (let j in this.stringSemantics[ssK[i]]) {
+					let predicate = this.stringSemantics[ssK[i]][j];
+					let value = elementStrings[ssK[i]]
+					outputObject[predicate]=value;
+				}
+			}
+		}
+		
+		// handle AIs and predicates that expect a quantitative value
+		for (let i in qvK) {
+			if (aiKeys.includes(qvK[i])) {
+					let predicate = this.quantitativeValueSemantics[qvK[i]]["p"][0];
+					let rec20=this.quantitativeValueSemantics[qvK[i]]["rec20"];
+					let bareValue = elementStrings[qvK[i]];
+					let fourthDigit = qvK[i].charAt(3);
+					let value=bareValue;
+					for (let i=0; i<fourthDigit; i++) {
+					value=value/10;
+					}
+					let qv={};
+					qv["@type"]="gs1:QuantitativeValue";
+					qv["gs1:unitCode"]=rec20;
+					qv["gs1:value"]=value.toString();
+					outputObject[predicate]=qv;
+			}
+		}
+		
+		// handle AIs and predicates that expect a date value
+		for (let i in dvK) {
+			if (aiKeys.includes(dvK[i])) {
+				for (let j in this.dateSemantics[dvK[i]]) {
+					let predicate = this.dateSemantics[dvK[i]][j];
+					context[predicate]={"@type":"xsd:date"};
+					let bareValue = elementStrings[dvK[i]];
+					let xsdDateValue = sixDigitToXsdDate(bareValue);
+					outputObject[predicate]=xsdDateValue;
+				}		
+			}
+		}
+		
+		
+		
+		
+		// handle AIs and predicates that expect a dateTime value with second precision, e.g. AI 8008
+		for (let i in dtsvK) {
+			if (aiKeys.includes(dtsvK[i])) {
+				for (let j in this.dateTimeSecondsSemantics[dtsvK[i]]) {
+					let predicate = this.dateTimeSecondsSemantics[dtsvK[i]][j];
+					context[predicate]={"@type":"xsd:dateTime"};
+					let bareValue = elementStrings[dtsvK[i]];
+					let xsdDateTimeValue = maxTwelveDigitToXsdDateTime(bareValue);
+					outputObject[predicate]=xsdDateTimeValue;
+				}		
+			}
+		}
+
+		// handle AIs and predicates that expect a dateTime value with minute precision, e.g. AI 7003
+		for (let i in dtmvK) {
+			if (aiKeys.includes(dtmvK[i])) {
+				for (let j in this.dateTimeMinutesSemantics[dtmvK[i]]) {
+					let predicate = this.dateTimeMinutesSemantics[dtmvK[i]][j];
+					context[predicate]={"@type":"xsd:dateTime"};
+					let bareValue = elementStrings[dtmvK[i]];
+					let xsdDateTimeValue = tenDigitToXsdDateTime(bareValue);
+					outputObject[predicate]=xsdDateTimeValue;
+				}		
+			}
+		}
+		
+		// handle AIs and predicates that expect a date range, e.g. AI 7007
+		for (let i in drK) {
+			if (aiKeys.includes(drK[i])) {
+				for (let j in this.dateRangeSemantics[drK[i]]) {
+					let predicate = this.dateRangeSemantics[drK[i]][j];
+					let bareValue=elementStrings[drK[i]];
+					if (bareValue.length == 6) {
+						let xsdDateValue = sixDigitToXsdDate(bareValue);
+						context[predicate]={"@type":"xsd:dateTime"};
+						outputObject[predicate]=xsdDateValue;
+					} else {
+						if (bareValue.length == 12) {
+							let xsdStartDateValue = sixDigitToXsdDate(bareValue.substr(0,6));
+							let xsdEndDateValue = sixDigitToXsdDate(bareValue.substr(6,6));
+							context[predicate+"Start"]={"@type":"xsd:dateTime"};
+							context[predicate+"End"]={"@type":"xsd:dateTime"};
+							outputObject[predicate+"Start"]=xsdStartDateValue;
+							outputObject[predicate+"End"]=xsdEndDateValue;
+						}
+					}
+				
+				}
+			}
+		}
+		
+		outputObject["gs1:elementStrings"]=rv.elementStringsOutput;
+		
+		
+		
+		rv.semantics = Object.assign({"@context":context}, outputObject);
+		
+		return rv.semantics;
+		
+		function tenDigitToXsdDateTime(tenDigit) {
+			var re=new RegExp("\\d{2}(?:12|11|0\\d)(?:31|30|2\\d|1\\d|0[1-9])(?:0\\d|1\\d|2[0-4])(?:[0-5]\\d)");
+			if (!(re.test(tenDigit))) {
+				throw new Error("input to date conversion did not match valid YYMMDDhhmm pattern");
+			} else {
+				var year=tenDigit.substr(0,2);
+				var month=tenDigit.substr(2,2);
+				var day=tenDigit.substr(4,2);
+				var hour=tenDigit.substr(6,2);
+				var mins=tenDigit.substr(8,2);
+				var intendedYear = determineFourDigitYear(year);
+		
+				var intendedDateTime=intendedYear+"-"+month+"-"+day+"T"+hour+":"+mins+":00";
+				return intendedDateTime;
+			}
+		}
+
+		function maxTwelveDigitToXsdDateTime(twelveDigit) {
+			var re=new RegExp("\\d{2}(?:12|11|0\\d)(?:31|30|2\\d|1\\d|0[1-9])(?:0\\d|1\\d|2[0-4])(?:[0-5]\\d)?(?:[0-5]\\d)?");
+			if (!(re.test(twelveDigit))) {
+				throw new Error("input to date conversion did not match valid YYMMDDhh[mm][ss] pattern");
+			} else {
+				var year=twelveDigit.substr(0,2);
+				var month=twelveDigit.substr(2,2);
+				var day=twelveDigit.substr(4,2);
+				var hour=twelveDigit.substr(6,2);
+				var min;
+				var sec;
+				if (twelveDigit.length > 8) {
+					min=twelveDigit.substr(8,2);
+				} else {
+					min="00";
+				}
+
+				if (twelveDigit.length > 10) {
+					sec=twelveDigit.substr(10,2);
+				} else {
+					sec="00";
+				}
+				
+				var intendedYear = determineFourDigitYear(year);
+		
+				var intendedDateTime=intendedYear+"-"+month+"-"+day+"T"+hour+":"+min+":"+sec;
+				return intendedDateTime;
+			}
+		}
+
+
+		function determineFourDigitYear(year) {
+				var dt = new Date();
+				var currentYear = 1900+dt.getYear();	
+				var currentCentury=(""+currentYear).substr(0,2);
+				var difference = year - (currentYear % 100);
+				var intendedYear;
+				if ((difference >= 51) && (difference <=99)) {
+					intendedYear = (currentCentury-1)+year;
+				} else {
+					if ((difference >= -99) && (difference <= -50)) {
+						intendedYear = (currentCentury-(-1))+year;
+					} else {
+						intendedYear = currentCentury+year;
+					}
+				}
+			return intendedYear;
+		}
+
+
+		function sixDigitToXsdDate(sixDigit) {
+			var re=new RegExp("\\d{2}(?:12|11|0\\d)(?:31|30|2\\d|1\\d|0\\d)");
+			if (!(re.test(sixDigit))) {
+				throw new Error("input to date conversion did not match valid YYMMDD pattern");
+			} else {
+				var year=sixDigit.substr(0,2);
+				var month=sixDigit.substr(2,2);
+				var day=sixDigit.substr(4,2);
+		
+				var lastDay=31;
+				if ((month == "04") || (month == "06") || (month == "09") || (month == "11")) {
+					lastDay=30;
+				} 
+				if (month == "02") {
+					lastDay=28;
+					if ( ((intendedYear % 4) == 0) && (!((intendedYear % 400) == 0) ) ) {
+						lastDay=29;
+					}
+				}
+		
+				if ((day-0) > lastDay) {
+					throw new Error("input to date conversion was a YYMMDD pattern with a value of DD too large for MM, e.g. 31st of June, 30th of February");
+				}
+		
+				var intendedYear = determineFourDigitYear(year);
+		
+				var intendedDate;
+
+				if (day == "00") {
+					intendedDate=intendedYear+"-"+month+"-"+lastDay;
+				} else {
+					intendedDate=intendedYear+"-"+month+"-"+day;
+				}
+
+				return intendedDate;
+				}
+		}
+		
+		
+		
+		
+	}
 	
 	analyseURI(gs1DigitalLinkURI,extended) {
 		let rv={};
@@ -1522,6 +1886,8 @@ class GS1DigitalLinkToolkit {
 						let rbv=binstr.substr(cursor,numBitsForValue);
 						cursor+=numBitsForValue;
 						let s=parseInt(rbv,2).toString();
+						if (numDigits==0) { s=""; }
+
 						gs1AIarray[key]+=""+s;				
 					}
 			
@@ -1754,7 +2120,7 @@ class GS1DigitalLinkToolkit {
 		let lengthBits=(charstr.length).toString(2);
 		lengthBits=this.padToLength(lengthBits,7);
 		let enc=this.determineEncoding(charstr);
-		let binstr=this.handleEncodings(enc,lengthBits,charstr,"");			
+		let binstr=this.handleEncodings(enc,lengthBits,charstr,"");	
 		return binstr;
 	}
 
@@ -1807,9 +2173,7 @@ class GS1DigitalLinkToolkit {
 		let extracted = this.extractFromCompressedGS1digitalLink(compressedDigitalLinkURI);
 		let gs1AIarray = extracted.GS1;
 		let otherArray = extracted.other;
-		// TODO do something with otherArray to add it to the URI query string
 		let uncompressedDL = this.buildGS1digitalLink(gs1AIarray,useShortText,uriStem,otherArray);	
-		// return uncompressedDL;
 		return uncompressedDL;
 	}
 
@@ -1886,4 +2250,6 @@ class GS1DigitalLinkToolkit {
 
 }
 
-module.exports = GS1DigitalLinkToolkit;	
+if (typeof(module) != "undefined") {
+module.exports = GS1DigitalLinkToolkit;
+}
