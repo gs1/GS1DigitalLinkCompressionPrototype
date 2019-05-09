@@ -22,23 +22,20 @@ class GS1DigitalLinkToolkit {
 		const tableOpt = {"0A":["01","22"],"0B":["01","10"],"0C":["01","21"],"0D":["01","17"],"0E":["01","7003"],"0F":["01","30"],"1A":["01","10","21","17"],"1B":["01","15"],"1C":["01","11"],"1D":["01","16"],"1E":["01","91"],"1F":["01","10","15"],"2A":["01","3100"],"2B":["01","3101"],"2C":["01","3102"],"2D":["01","3103"],"2E":["01","3104"],"2F":["01","3105"],"3A":["01","3200"],"3B":["01","3201"],"3C":["01","3202"],"3D":["01","3203"],"3E":["01","3204"],"3F":["01","3205"],"9A":["8010","8011"],"9B":["8017","8019"],"9C":["8018","8019"],"9D":["414","254"],"A0":["01","3920"],"A1":["01","3921"],"A2":["01","3922"],"A3":["01","3923"],"A4":["01","3924"],"A5":["01","3925"],"A6":["01","3926"],"A7":["01","3927"],"A8":["01","3928"],"A9":["01","3929"],"C0":["255","3900"],"C1":["255","3901"],"C2":["255","3902"],"C3":["255","3903"],"C4":["255","3904"],"C5":["255","3905"],"C6":["255","3906"],"C7":["255","3907"],"C8":["255","3908"],"C9":["255","3909"],"CA":["255","3940"],"CB":["255","3941"],"CC":["255","3942"],"CD":["255","3943"]}
 
 
-		const instanceIdentifiersAndQualifiers = {"01":["21","235"],"00": null}; // this is incomplete but sufficient for initial testing
-		// TODO extend instanceIdentifiersAndQualifiers fully.  Format is primary key : null or list of AIs of which one must be specified.
+		const tableS1 = {"01":{"requires":["21","235"]},"00": {"requires":null},"8006":{"requires":["21"]},"8010":{"requires":["8011"]},"8004":{"requires":null},"8003":{"minLength":15},"253":{"minLength":14},"254":{"minLength":14}}; // this is incomplete but sufficient for initial testing
+		// TODO extend tableS1 fully.  Format is primary key : null or list of AIs of which one must be specified.
 		
 		const stringSemantics = {"01":["gs1:gtin","schema:gtin"], "10":["gs1:hasBatchLot"], "21":["gs1:hasSerialNumber"], "235":["gs1:hasThirdPartyControlledSerialNumber"], "22":["gs1:consumerProductVariant"]};
 		
 		const classSemantics = {"01":["gs1:Product","schema:Product"],"8006":["gs1:Product","schema:Product"],"414":["gs1:Place","schema:Place"],"417":["gs1:Organization","schema:Organization"]};
 		
-		const dateSemantics = {"11":["gs1:productionDate"], "12":["gs1:dueDate"], "13":["gs1:packagingDate"], "15":["gs1:bestBeforeDate"], "16": ["gs1:sellByDate"], "17":["gs1:expirationDate"]};
+		const dateSemantics = {"11":["gs1:productionDate"], "12":["gs1:dueDate"], "13":["gs1:packagingDate"], "15":["gs1:bestBeforeDate"], "16": ["gs1:sellByDate"], "17":["gs1:expirationDate"],"7006":["gs1:firstFreezeDate"]};
 		
 		const dateTimeSecondsSemantics = {"8008":["gs1:productionDateTime"] }; 
 		const dateTimeMinutesSemantics = {"7003": ["gs1:expirationDateTime"] }; 
 		const dateRangeSemantics = {"7007":["gs1:harvestDate"]};
 		
-		const quantitativeValueSemantics = {"3100":{"p":["gs1:netWeight"],"rec20":"KGM"},"3101":{"p":["gs1:netWeight"],"rec20":"KGM"},"3102":{"p":["gs1:netWeight"],"rec20":"KGM"},"3103":{"p":["gs1:netWeight"],"rec20":"KGM"},"3104":{"p":["gs1:netWeight"],"rec20":"KGM"},"3105":{"p":["gs1:netWeight"],"rec20":"KGM"},"3200":{"p":["gs1:netWeight"],"rec20":"LBR"},"3201":{"p":["gs1:netWeight"],"rec20":"LBR"},"3202":{"p":["gs1:netWeight"],"rec20":"LBR"},"3203":{"p":["gs1:netWeight"],"rec20":"LBR"},"3204":{"p":["gs1:netWeight"],"rec20":"LBR"},"3205":{"p":["gs1:netWeight"],"rec20":"LBR"},"3560":{"p":["gs1:netWeight"],"rec20":"APZ"},"3561":{"p":["gs1:netWeight"],"rec20":"APZ"},"3562":{"p":["gs1:netWeight"],"rec20":"APZ"},"3563":{"p":["gs1:netWeight"],"rec20":"APZ"},"3564":{"p":["gs1:netWeight"],"rec20":"APZ"},"3565":{"p":["gs1:netWeight"],"rec20":"APZ"},"3570":{"p":["gs1:netWeight"],"rec20":"ONZ"},"3571":{"p":["gs1:netWeight"],"rec20":"ONZ"},"3572":{"p":["gs1:netWeight"],"rec20":"ONZ"},"3573":{"p":["gs1:netWeight"],"rec20":"ONZ"},"3574":{"p":["gs1:netWeight"],"rec20":"ONZ"},"3575":{"p":["gs1:netWeight"],"rec20":"ONZ"},"3300":{"p":["gs1:grossWeight"],"rec20":"KGM"},"3301":{"p":["gs1:grossWeight"],"rec20":"KGM"},"3302":{"p":["gs1:grossWeight"],"rec20":"KGM"},"3303":{"p":["gs1:grossWeight"],"rec20":"KGM"},"3304":{"p":["gs1:grossWeight"],"rec20":"KGM"},"3305":{"p":["gs1:grossWeight"],"rec20":"KGM"},"3400":{"p":["gs1:grossWeight"],"rec20":"LBR"},"3401":{"p":["gs1:grossWeight"],"rec20":"LBR"},"3402":{"p":["gs1:grossWeight"],"rec20":"LBR"},"3403":{"p":["gs1:grossWeight"],"rec20":"LBR"},"3404":{"p":["gs1:grossWeight"],"rec20":"LBR"},"3405":{"p":["gs1:grossWeight"],"rec20":"LBR"},"3150":{"p":["gs1:netContent"],"rec20":"LTR"},"3151":{"p":["gs1:netContent"],"rec20":"LTR"},"3152":{"p":["gs1:netContent"],"rec20":"LTR"},"3153":{"p":["gs1:netContent"],"rec20":"LTR"},"3154":{"p":["gs1:netContent"],"rec20":"LTR"},"3155":{"p":["gs1:netContent"],"rec20":"LTR"},"3160":{"p":["gs1:netContent"],"rec20":"MTQ"},"3161":{"p":["gs1:netContent"],"rec20":"MTQ"},"3162":{"p":["gs1:netContent"],"rec20":"MTQ"},"3163":{"p":["gs1:netContent"],"rec20":"MTQ"},"3164":{"p":["gs1:netContent"],"rec20":"MTQ"},"3165":{"p":["gs1:netContent"],"rec20":"MTQ"},"3600":{"p":["gs1:netContent"],"rec20":"QT"},"3601":{"p":["gs1:netContent"],"rec20":"QT"},"3602":{"p":["gs1:netContent"],"rec20":"QT"},"3603":{"p":["gs1:netContent"],"rec20":"QT"},"3604":{"p":["gs1:netContent"],"rec20":"QT"},"3605":{"p":["gs1:netContent"],"rec20":"QT"},"3610":{"p":["gs1:netContent"],"rec20":"GLL"},"3611":{"p":["gs1:netContent"],"rec20":"GLL"},"3612":{"p":["gs1:netContent"],"rec20":"GLL"},"3613":{"p":["gs1:netContent"],"rec20":"GLL"},"3614":{"p":["gs1:netContent"],"rec20":"GLL"},"3615":{"p":["gs1:netContent"],"rec20":"GLL"},"3650":{"p":["gs1:netContent"],"rec20":"FTQ"},"3651":{"p":["gs1:netContent"],"rec20":"FTQ"},"3652":{"p":["gs1:netContent"],"rec20":"FTQ"},"3653":{"p":["gs1:netContent"],"rec20":"FTQ"},"3654":{"p":["gs1:netContent"],"rec20":"FTQ"},"3655":{"p":["gs1:netContent"],"rec20":"FTQ"},"3640":{"p":["gs1:netContent"],"rec20":"INQ"},"3641":{"p":["gs1:netContent"],"rec20":"INQ"},"3642":{"p":["gs1:netContent"],"rec20":"INQ"},"3643":{"p":["gs1:netContent"],"rec20":"INQ"},"3644":{"p":["gs1:netContent"],"rec20":"INQ"},"3645":{"p":["gs1:netContent"],"rec20":"INQ"},"3660":{"p":["gs1:netContent"],"rec20":"YDQ"},"3661":{"p":["gs1:netContent"],"rec20":"YDQ"},"3662":{"p":["gs1:netContent"],"rec20":"YDQ"},"3663":{"p":["gs1:netContent"],"rec20":"YDQ"},"3664":{"p":["gs1:netContent"],"rec20":"YDQ"},"3665":{"p":["gs1:netContent"],"rec20":"YDQ"}};
-		// TODO - complete quantitativeValueSemantics table - see Excel spreadsheet
-		
-	
+		const quantitativeValueSemantics = {"3100":{"p":["gs1:netWeight"],"rec20":"KGM"},"3101":{"p":["gs1:netWeight"],"rec20":"KGM"},"3102":{"p":["gs1:netWeight"],"rec20":"KGM"},"3103":{"p":["gs1:netWeight"],"rec20":"KGM"},"3104":{"p":["gs1:netWeight"],"rec20":"KGM"},"3105":{"p":["gs1:netWeight"],"rec20":"KGM"},"3200":{"p":["gs1:netWeight"],"rec20":"LBR"},"3201":{"p":["gs1:netWeight"],"rec20":"LBR"},"3202":{"p":["gs1:netWeight"],"rec20":"LBR"},"3203":{"p":["gs1:netWeight"],"rec20":"LBR"},"3204":{"p":["gs1:netWeight"],"rec20":"LBR"},"3205":{"p":["gs1:netWeight"],"rec20":"LBR"},"3560":{"p":["gs1:netWeight"],"rec20":"APZ"},"3561":{"p":["gs1:netWeight"],"rec20":"APZ"},"3562":{"p":["gs1:netWeight"],"rec20":"APZ"},"3563":{"p":["gs1:netWeight"],"rec20":"APZ"},"3564":{"p":["gs1:netWeight"],"rec20":"APZ"},"3565":{"p":["gs1:netWeight"],"rec20":"APZ"},"3570":{"p":["gs1:netWeight"],"rec20":"ONZ"},"3571":{"p":["gs1:netWeight"],"rec20":"ONZ"},"3572":{"p":["gs1:netWeight"],"rec20":"ONZ"},"3573":{"p":["gs1:netWeight"],"rec20":"ONZ"},"3574":{"p":["gs1:netWeight"],"rec20":"ONZ"},"3575":{"p":["gs1:netWeight"],"rec20":"ONZ"},"3300":{"p":["gs1:grossWeight"],"rec20":"KGM"},"3301":{"p":["gs1:grossWeight"],"rec20":"KGM"},"3302":{"p":["gs1:grossWeight"],"rec20":"KGM"},"3303":{"p":["gs1:grossWeight"],"rec20":"KGM"},"3304":{"p":["gs1:grossWeight"],"rec20":"KGM"},"3305":{"p":["gs1:grossWeight"],"rec20":"KGM"},"3400":{"p":["gs1:grossWeight"],"rec20":"LBR"},"3401":{"p":["gs1:grossWeight"],"rec20":"LBR"},"3402":{"p":["gs1:grossWeight"],"rec20":"LBR"},"3403":{"p":["gs1:grossWeight"],"rec20":"LBR"},"3404":{"p":["gs1:grossWeight"],"rec20":"LBR"},"3405":{"p":["gs1:grossWeight"],"rec20":"LBR"},"3150":{"p":["gs1:netContent"],"rec20":"LTR"},"3151":{"p":["gs1:netContent"],"rec20":"LTR"},"3152":{"p":["gs1:netContent"],"rec20":"LTR"},"3153":{"p":["gs1:netContent"],"rec20":"LTR"},"3154":{"p":["gs1:netContent"],"rec20":"LTR"},"3155":{"p":["gs1:netContent"],"rec20":"LTR"},"3160":{"p":["gs1:netContent"],"rec20":"MTQ"},"3161":{"p":["gs1:netContent"],"rec20":"MTQ"},"3162":{"p":["gs1:netContent"],"rec20":"MTQ"},"3163":{"p":["gs1:netContent"],"rec20":"MTQ"},"3164":{"p":["gs1:netContent"],"rec20":"MTQ"},"3165":{"p":["gs1:netContent"],"rec20":"MTQ"},"3600":{"p":["gs1:netContent"],"rec20":"QT"},"3601":{"p":["gs1:netContent"],"rec20":"QT"},"3602":{"p":["gs1:netContent"],"rec20":"QT"},"3603":{"p":["gs1:netContent"],"rec20":"QT"},"3604":{"p":["gs1:netContent"],"rec20":"QT"},"3605":{"p":["gs1:netContent"],"rec20":"QT"},"3610":{"p":["gs1:netContent"],"rec20":"GLL"},"3611":{"p":["gs1:netContent"],"rec20":"GLL"},"3612":{"p":["gs1:netContent"],"rec20":"GLL"},"3613":{"p":["gs1:netContent"],"rec20":"GLL"},"3614":{"p":["gs1:netContent"],"rec20":"GLL"},"3615":{"p":["gs1:netContent"],"rec20":"GLL"},"3650":{"p":["gs1:netContent"],"rec20":"FTQ"},"3651":{"p":["gs1:netContent"],"rec20":"FTQ"},"3652":{"p":["gs1:netContent"],"rec20":"FTQ"},"3653":{"p":["gs1:netContent"],"rec20":"FTQ"},"3654":{"p":["gs1:netContent"],"rec20":"FTQ"},"3655":{"p":["gs1:netContent"],"rec20":"FTQ"},"3640":{"p":["gs1:netContent"],"rec20":"INQ"},"3641":{"p":["gs1:netContent"],"rec20":"INQ"},"3642":{"p":["gs1:netContent"],"rec20":"INQ"},"3643":{"p":["gs1:netContent"],"rec20":"INQ"},"3644":{"p":["gs1:netContent"],"rec20":"INQ"},"3645":{"p":["gs1:netContent"],"rec20":"INQ"},"3660":{"p":["gs1:netContent"],"rec20":"YDQ"},"3661":{"p":["gs1:netContent"],"rec20":"YDQ"},"3662":{"p":["gs1:netContent"],"rec20":"YDQ"},"3663":{"p":["gs1:netContent"],"rec20":"YDQ"},"3664":{"p":["gs1:netContent"],"rec20":"YDQ"},"3665":{"p":["gs1:netContent"],"rec20":"YDQ"},"3350":{"p":["gs1:grossVolume"],"rec20":"LTR"},"3351":{"p":["gs1:grossVolume"],"rec20":"LTR"},"3352":{"p":["gs1:grossVolume"],"rec20":"LTR"},"3353":{"p":["gs1:grossVolume"],"rec20":"LTR"},"3354":{"p":["gs1:grossVolume"],"rec20":"LTR"},"3355":{"p":["gs1:grossVolume"],"rec20":"LTR"},"3360":{"p":["gs1:grossVolume"],"rec20":"MTQ"},"3361":{"p":["gs1:grossVolume"],"rec20":"MTQ"},"3362":{"p":["gs1:grossVolume"],"rec20":"MTQ"},"3363":{"p":["gs1:grossVolume"],"rec20":"MTQ"},"3364":{"p":["gs1:grossVolume"],"rec20":"MTQ"},"3365":{"p":["gs1:grossVolume"],"rec20":"MTQ"},"3680":{"p":["gs1:grossVolume"],"rec20":"FTQ"},"3681":{"p":["gs1:grossVolume"],"rec20":"FTQ"},"3682":{"p":["gs1:grossVolume"],"rec20":"FTQ"},"3683":{"p":["gs1:grossVolume"],"rec20":"FTQ"},"3684":{"p":["gs1:grossVolume"],"rec20":"FTQ"},"3685":{"p":["gs1:grossVolume"],"rec20":"FTQ"},"3670":{"p":["gs1:grossVolume"],"rec20":"INQ"},"3671":{"p":["gs1:grossVolume"],"rec20":"INQ"},"3672":{"p":["gs1:grossVolume"],"rec20":"INQ"},"3673":{"p":["gs1:grossVolume"],"rec20":"INQ"},"3674":{"p":["gs1:grossVolume"],"rec20":"INQ"},"3675":{"p":["gs1:grossVolume"],"rec20":"INQ"},"3690":{"p":["gs1:grossVolume"],"rec20":"YDQ"},"3691":{"p":["gs1:grossVolume"],"rec20":"YDQ"},"3692":{"p":["gs1:grossVolume"],"rec20":"YDQ"},"3693":{"p":["gs1:grossVolume"],"rec20":"YDQ"},"3694":{"p":["gs1:grossVolume"],"rec20":"YDQ"},"3695":{"p":["gs1:grossVolume"],"rec20":"YDQ"},"3630":{"p":["gs1:grossVolume"],"rec20":"GLL"},"3631":{"p":["gs1:grossVolume"],"rec20":"GLL"},"3632":{"p":["gs1:grossVolume"],"rec20":"GLL"},"3633":{"p":["gs1:grossVolume"],"rec20":"GLL"},"3634":{"p":["gs1:grossVolume"],"rec20":"GLL"},"3635":{"p":["gs1:grossVolume"],"rec20":"GLL"},"3620":{"p":["gs1:grossVolume"],"rec20":"QT"},"3621":{"p":["gs1:grossVolume"],"rec20":"QT"},"3622":{"p":["gs1:grossVolume"],"rec20":"QT"},"3623":{"p":["gs1:grossVolume"],"rec20":"QT"},"3624":{"p":["gs1:grossVolume"],"rec20":"QT"},"3625":{"p":["gs1:grossVolume"],"rec20":"QT"},"3280":{"p":["gs1:outOfPackageDepth"],"rec20":"FOT"},"3281":{"p":["gs1:outOfPackageDepth"],"rec20":"FOT"},"3282":{"p":["gs1:outOfPackageDepth"],"rec20":"FOT"},"3283":{"p":["gs1:outOfPackageDepth"],"rec20":"FOT"},"3284":{"p":["gs1:outOfPackageDepth"],"rec20":"FOT"},"3285":{"p":["gs1:outOfPackageDepth"],"rec20":"FOT"},"3270":{"p":["gs1:outOfPackageDepth"],"rec20":"INH"},"3271":{"p":["gs1:outOfPackageDepth"],"rec20":"INH"},"3272":{"p":["gs1:outOfPackageDepth"],"rec20":"INH"},"3273":{"p":["gs1:outOfPackageDepth"],"rec20":"INH"},"3274":{"p":["gs1:outOfPackageDepth"],"rec20":"INH"},"3275":{"p":["gs1:outOfPackageDepth"],"rec20":"INH"},"3130":{"p":["gs1:outOfPackageDepth"],"rec20":"MTR"},"3131":{"p":["gs1:outOfPackageDepth"],"rec20":"MTR"},"3132":{"p":["gs1:outOfPackageDepth"],"rec20":"MTR"},"3133":{"p":["gs1:outOfPackageDepth"],"rec20":"MTR"},"3134":{"p":["gs1:outOfPackageDepth"],"rec20":"MTR"},"3135":{"p":["gs1:outOfPackageDepth"],"rec20":"MTR"},"3290":{"p":["gs1:outOfPackageDepth"],"rec20":"YRD"},"3291":{"p":["gs1:outOfPackageDepth"],"rec20":"YRD"},"3292":{"p":["gs1:outOfPackageDepth"],"rec20":"YRD"},"3293":{"p":["gs1:outOfPackageDepth"],"rec20":"YRD"},"3294":{"p":["gs1:outOfPackageDepth"],"rec20":"YRD"},"3295":{"p":["gs1:outOfPackageDepth"],"rec20":"YRD"},"3480":{"p":["gs1:inPackageDepth"],"rec20":"FOT"},"3481":{"p":["gs1:inPackageDepth"],"rec20":"FOT"},"3482":{"p":["gs1:inPackageDepth"],"rec20":"FOT"},"3483":{"p":["gs1:inPackageDepth"],"rec20":"FOT"},"3484":{"p":["gs1:inPackageDepth"],"rec20":"FOT"},"3485":{"p":["gs1:inPackageDepth"],"rec20":"FOT"},"3470":{"p":["gs1:inPackageDepth"],"rec20":"INH"},"3471":{"p":["gs1:inPackageDepth"],"rec20":"INH"},"3472":{"p":["gs1:inPackageDepth"],"rec20":"INH"},"3473":{"p":["gs1:inPackageDepth"],"rec20":"INH"},"3474":{"p":["gs1:inPackageDepth"],"rec20":"INH"},"3475":{"p":["gs1:inPackageDepth"],"rec20":"INH"},"3330":{"p":["gs1:inPackageDepth"],"rec20":"MTR"},"3331":{"p":["gs1:inPackageDepth"],"rec20":"MTR"},"3332":{"p":["gs1:inPackageDepth"],"rec20":"MTR"},"3333":{"p":["gs1:inPackageDepth"],"rec20":"MTR"},"3334":{"p":["gs1:inPackageDepth"],"rec20":"MTR"},"3335":{"p":["gs1:inPackageDepth"],"rec20":"MTR"},"3490":{"p":["gs1:inPackageDepth"],"rec20":"YRD"},"3491":{"p":["gs1:inPackageDepth"],"rec20":"YRD"},"3492":{"p":["gs1:inPackageDepth"],"rec20":"YRD"},"3493":{"p":["gs1:inPackageDepth"],"rec20":"YRD"},"3494":{"p":["gs1:inPackageDepth"],"rec20":"YRD"},"3495":{"p":["gs1:inPackageDepth"],"rec20":"YRD"},"3220":{"p":["gs1:outOfPackageLength"],"rec20":"FOT"},"3221":{"p":["gs1:outOfPackageLength"],"rec20":"FOT"},"3222":{"p":["gs1:outOfPackageLength"],"rec20":"FOT"},"3223":{"p":["gs1:outOfPackageLength"],"rec20":"FOT"},"3224":{"p":["gs1:outOfPackageLength"],"rec20":"FOT"},"3225":{"p":["gs1:outOfPackageLength"],"rec20":"FOT"},"3210":{"p":["gs1:outOfPackageLength"],"rec20":"INH"},"3211":{"p":["gs1:outOfPackageLength"],"rec20":"INH"},"3212":{"p":["gs1:outOfPackageLength"],"rec20":"INH"},"3213":{"p":["gs1:outOfPackageLength"],"rec20":"INH"},"3214":{"p":["gs1:outOfPackageLength"],"rec20":"INH"},"3215":{"p":["gs1:outOfPackageLength"],"rec20":"INH"},"3110":{"p":["gs1:outOfPackageLength"],"rec20":"MTR"},"3111":{"p":["gs1:outOfPackageLength"],"rec20":"MTR"},"3112":{"p":["gs1:outOfPackageLength"],"rec20":"MTR"},"3113":{"p":["gs1:outOfPackageLength"],"rec20":"MTR"},"3114":{"p":["gs1:outOfPackageLength"],"rec20":"MTR"},"3115":{"p":["gs1:outOfPackageLength"],"rec20":"MTR"},"3230":{"p":["gs1:outOfPackageLength"],"rec20":"YRD"},"3231":{"p":["gs1:outOfPackageLength"],"rec20":"YRD"},"3232":{"p":["gs1:outOfPackageLength"],"rec20":"YRD"},"3233":{"p":["gs1:outOfPackageLength"],"rec20":"YRD"},"3234":{"p":["gs1:outOfPackageLength"],"rec20":"YRD"},"3235":{"p":["gs1:outOfPackageLength"],"rec20":"YRD"},"3420":{"p":["gs1:inPackageLength"],"rec20":"FOT"},"3421":{"p":["gs1:inPackageLength"],"rec20":"FOT"},"3422":{"p":["gs1:inPackageLength"],"rec20":"FOT"},"3423":{"p":["gs1:inPackageLength"],"rec20":"FOT"},"3424":{"p":["gs1:inPackageLength"],"rec20":"FOT"},"3425":{"p":["gs1:inPackageLength"],"rec20":"FOT"},"3410":{"p":["gs1:inPackageLength"],"rec20":"INH"},"3411":{"p":["gs1:inPackageLength"],"rec20":"INH"},"3412":{"p":["gs1:inPackageLength"],"rec20":"INH"},"3413":{"p":["gs1:inPackageLength"],"rec20":"INH"},"3414":{"p":["gs1:inPackageLength"],"rec20":"INH"},"3415":{"p":["gs1:inPackageLength"],"rec20":"INH"},"3310":{"p":["gs1:inPackageLength"],"rec20":"MTR"},"3311":{"p":["gs1:inPackageLength"],"rec20":"MTR"},"3312":{"p":["gs1:inPackageLength"],"rec20":"MTR"},"3313":{"p":["gs1:inPackageLength"],"rec20":"MTR"},"3314":{"p":["gs1:inPackageLength"],"rec20":"MTR"},"3315":{"p":["gs1:inPackageLength"],"rec20":"MTR"},"3430":{"p":["gs1:inPackageLength"],"rec20":"YRD"},"3431":{"p":["gs1:inPackageLength"],"rec20":"YRD"},"3432":{"p":["gs1:inPackageLength"],"rec20":"YRD"},"3433":{"p":["gs1:inPackageLength"],"rec20":"YRD"},"3434":{"p":["gs1:inPackageLength"],"rec20":"YRD"},"3435":{"p":["gs1:inPackageLength"],"rec20":"YRD"},"3250":{"p":["gs1:outOfPackageWidth"],"rec20":"FOT"},"3251":{"p":["gs1:outOfPackageWidth"],"rec20":"FOT"},"3252":{"p":["gs1:outOfPackageWidth"],"rec20":"FOT"},"3253":{"p":["gs1:outOfPackageWidth"],"rec20":"FOT"},"3254":{"p":["gs1:outOfPackageWidth"],"rec20":"FOT"},"3255":{"p":["gs1:outOfPackageWidth"],"rec20":"FOT"},"3240":{"p":["gs1:outOfPackageWidth"],"rec20":"INH"},"3241":{"p":["gs1:outOfPackageWidth"],"rec20":"INH"},"3242":{"p":["gs1:outOfPackageWidth"],"rec20":"INH"},"3243":{"p":["gs1:outOfPackageWidth"],"rec20":"INH"},"3244":{"p":["gs1:outOfPackageWidth"],"rec20":"INH"},"3245":{"p":["gs1:outOfPackageWidth"],"rec20":"INH"},"3120":{"p":["gs1:outOfPackageWidth"],"rec20":"MTR"},"3121":{"p":["gs1:outOfPackageWidth"],"rec20":"MTR"},"3122":{"p":["gs1:outOfPackageWidth"],"rec20":"MTR"},"3123":{"p":["gs1:outOfPackageWidth"],"rec20":"MTR"},"3124":{"p":["gs1:outOfPackageWidth"],"rec20":"MTR"},"3125":{"p":["gs1:outOfPackageWidth"],"rec20":"MTR"},"3460":{"p":["gs1:outOfPackageWidth"],"rec20":"YRD"},"3461":{"p":["gs1:outOfPackageWidth"],"rec20":"YRD"},"3462":{"p":["gs1:outOfPackageWidth"],"rec20":"YRD"},"3463":{"p":["gs1:outOfPackageWidth"],"rec20":"YRD"},"3464":{"p":["gs1:outOfPackageWidth"],"rec20":"YRD"},"3465":{"p":["gs1:outOfPackageWidth"],"rec20":"YRD"},"3450":{"p":["gs1:inPackageWidth"],"rec20":"FOT"},"3451":{"p":["gs1:inPackageWidth"],"rec20":"FOT"},"3452":{"p":["gs1:inPackageWidth"],"rec20":"FOT"},"3453":{"p":["gs1:inPackageWidth"],"rec20":"FOT"},"3454":{"p":["gs1:inPackageWidth"],"rec20":"FOT"},"3455":{"p":["gs1:inPackageWidth"],"rec20":"FOT"},"3440":{"p":["gs1:inPackageWidth"],"rec20":"INH"},"3441":{"p":["gs1:inPackageWidth"],"rec20":"INH"},"3442":{"p":["gs1:inPackageWidth"],"rec20":"INH"},"3443":{"p":["gs1:inPackageWidth"],"rec20":"INH"},"3444":{"p":["gs1:inPackageWidth"],"rec20":"INH"},"3445":{"p":["gs1:inPackageWidth"],"rec20":"INH"},"3320":{"p":["gs1:inPackageWidth"],"rec20":"MTR"},"3321":{"p":["gs1:inPackageWidth"],"rec20":"MTR"},"3322":{"p":["gs1:inPackageWidth"],"rec20":"MTR"},"3323":{"p":["gs1:inPackageWidth"],"rec20":"MTR"},"3324":{"p":["gs1:inPackageWidth"],"rec20":"MTR"},"3325":{"p":["gs1:inPackageWidth"],"rec20":"MTR"},"3460":{"p":["gs1:inPackageWidth"],"rec20":"YRD"},"3461":{"p":["gs1:inPackageWidth"],"rec20":"YRD"},"3462":{"p":["gs1:inPackageWidth"],"rec20":"YRD"},"3463":{"p":["gs1:inPackageWidth"],"rec20":"YRD"},"3464":{"p":["gs1:inPackageWidth"],"rec20":"YRD"},"3465":{"p":["gs1:inPackageWidth"],"rec20":"YRD"},"3510":{"p":["gs1:netArea"],"rec20":"FTK"},"3511":{"p":["gs1:netArea"],"rec20":"FTK"},"3512":{"p":["gs1:netArea"],"rec20":"FTK"},"3513":{"p":["gs1:netArea"],"rec20":"FTK"},"3514":{"p":["gs1:netArea"],"rec20":"FTK"},"3515":{"p":["gs1:netArea"],"rec20":"FTK"},"3500":{"p":["gs1:netArea"],"rec20":"INK"},"3501":{"p":["gs1:netArea"],"rec20":"INK"},"3502":{"p":["gs1:netArea"],"rec20":"INK"},"3503":{"p":["gs1:netArea"],"rec20":"INK"},"3504":{"p":["gs1:netArea"],"rec20":"INK"},"3505":{"p":["gs1:netArea"],"rec20":"INK"},"3140":{"p":["gs1:netArea"],"rec20":"MTK"},"3141":{"p":["gs1:netArea"],"rec20":"MTK"},"3142":{"p":["gs1:netArea"],"rec20":"MTK"},"3143":{"p":["gs1:netArea"],"rec20":"MTK"},"3144":{"p":["gs1:netArea"],"rec20":"MTK"},"3145":{"p":["gs1:netArea"],"rec20":"MTK"},"3520":{"p":["gs1:netArea"],"rec20":"YDK"},"3521":{"p":["gs1:netArea"],"rec20":"YDK"},"3522":{"p":["gs1:netArea"],"rec20":"YDK"},"3523":{"p":["gs1:netArea"],"rec20":"YDK"},"3524":{"p":["gs1:netArea"],"rec20":"YDK"},"3525":{"p":["gs1:netArea"],"rec20":"YDK"},"3540":{"p":["gs1:grossArea"],"rec20":"FTK"},"3541":{"p":["gs1:grossArea"],"rec20":"FTK"},"3542":{"p":["gs1:grossArea"],"rec20":"FTK"},"3543":{"p":["gs1:grossArea"],"rec20":"FTK"},"3544":{"p":["gs1:grossArea"],"rec20":"FTK"},"3545":{"p":["gs1:grossArea"],"rec20":"FTK"},"3530":{"p":["gs1:grossArea"],"rec20":"INK"},"3531":{"p":["gs1:grossArea"],"rec20":"INK"},"3532":{"p":["gs1:grossArea"],"rec20":"INK"},"3533":{"p":["gs1:grossArea"],"rec20":"INK"},"3534":{"p":["gs1:grossArea"],"rec20":"INK"},"3535":{"p":["gs1:grossArea"],"rec20":"INK"},"3340":{"p":["gs1:grossArea"],"rec20":"MTK"},"3341":{"p":["gs1:grossArea"],"rec20":"MTK"},"3342":{"p":["gs1:grossArea"],"rec20":"MTK"},"3343":{"p":["gs1:grossArea"],"rec20":"MTK"},"3344":{"p":["gs1:grossArea"],"rec20":"MTK"},"3345":{"p":["gs1:grossArea"],"rec20":"MTK"},"3550":{"p":["gs1:grossArea"],"rec20":"YDK"},"3551":{"p":["gs1:grossArea"],"rec20":"YDK"},"3552":{"p":["gs1:grossArea"],"rec20":"YDK"},"3553":{"p":["gs1:grossArea"],"rec20":"YDK"},"3554":{"p":["gs1:grossArea"],"rec20":"YDK"},"3555":{"p":["gs1:grossArea"],"rec20":"YDK"},"3370":{"p":["gs1:massPerUnitArea"],"rec20":"28"},"3371":{"p":["gs1:massPerUnitArea"],"rec20":"28"},"3372":{"p":["gs1:massPerUnitArea"],"rec20":"28"},"3373":{"p":["gs1:massPerUnitArea"],"rec20":"28"},"3374":{"p":["gs1:massPerUnitArea"],"rec20":"28"},"3375":{"p":["gs1:massPerUnitArea"],"rec20":"28"}				};
 
 		// safeBase64Alphabet is a modified URI-safe Base64 alphabet used in the compression methods for converting the binary string to/from an alphanumeric representation that contains no characters that are restricted in URIs
 		const safeBase64Alphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
@@ -268,7 +265,7 @@ class GS1DigitalLinkToolkit {
 		this.tableOptReverse = tableOptReverse;
 		this.safeBase64Alphabet = safeBase64Alphabet;
 		this.hexAlphabet = hexAlphabet;
-		this.instanceIdentifiersAndQualifiers = instanceIdentifiersAndQualifiers;
+		this.tableS1 = tableS1;
 		this.classSemantics = classSemantics;
 		this.stringSemantics = stringSemantics;
 		this.dateSemantics = dateSemantics;
@@ -779,9 +776,12 @@ class GS1DigitalLinkToolkit {
 				
 		if ((rv.detected == "fully compressed GS1 Digital Link") || (rv.detected == "partially compressed GS1 Digital Link")) {
 			uncompressedDL=this.decompressGS1DigitalLink(gs1DigitalLinkURI,false,rv.uriStem);	
+			
 		}
 		let qpos=uncompressedDL.indexOf("?");
 		let excludeQueryString=uncompressedDL.substr(0,qpos);
+		
+		
 		let rv2=this.analyseURI(excludeQueryString,false);
 
 		
@@ -823,7 +823,7 @@ class GS1DigitalLinkToolkit {
 		
 		rv.primaryIdentifier = pimK[0];
 		
-		let iiaqK = Object.keys(this.instanceIdentifiersAndQualifiers);
+		let iiaqK = Object.keys(this.tableS1);
 		let isInstanceIdentifier=false;
 		let outputObject={};
 
@@ -831,21 +831,37 @@ class GS1DigitalLinkToolkit {
 
 				
 		if (iiaqK.includes(rv.primaryIdentifier)) {
-			let iiaqV = this.instanceIdentifiersAndQualifiers[rv.primaryIdentifier];
-			if (iiaqV == null) {
-			  isInstanceIdentifier=true;
-			} else {
-				for (let v in iiaqV) {
-				  if (nonIDKeys.includes(iiaqV[v])) {
-				  	isInstanceIdentifier=true;
-				  }
+			let iiaqV = this.tableS1[rv.primaryIdentifier];
+
+			if ((iiaqV.hasOwnProperty("minLength")) && (iiaqV.minLength !== null)) {
+				if (rv.primaryIdentifier.length >= iiaqV.minLength) {
+					isInstanceIdentifier=true;
 				}
 			}
+			
+			if (iiaqV.hasOwnProperty("requires")) {
+				if (iiaqV.requires == null) {
+				  isInstanceIdentifier=true;
+				} else {
+					for (let v in iiaqV.requires) {
+					  if (nonIDKeys.includes(iiaqV.requires[v])) {
+						isInstanceIdentifier=true;
+					  }
+					}
+				}
+			}
+			
 		}
 		
 		if (isInstanceIdentifier) {
 		outputObject["@id"]=excludeQueryString; // this is now the uncompressed GS1 Digital Link without the query string
-		outputObject["owl:sameAs"]=[uncompressedDL,gs1DigitalLinkURI];
+		let osa = [uncompressedDL];
+		if (gs1DigitalLinkURI !== uncompressedDL) {
+		osa.push(gs1DigitalLinkURI);
+		}
+//		osa.push(canonical);
+		
+		outputObject["owl:sameAs"]=osa;
 		} else {
 		outputObject["@id"]="_:1";
 		}
@@ -1076,6 +1092,9 @@ class GS1DigitalLinkToolkit {
 				var year=sixDigit.substr(0,2);
 				var month=sixDigit.substr(2,2);
 				var day=sixDigit.substr(4,2);
+
+				var intendedYear = determineFourDigitYear(year);
+
 		
 				var lastDay=31;
 				if ((month == "04") || (month == "06") || (month == "09") || (month == "11")) {
@@ -1083,7 +1102,7 @@ class GS1DigitalLinkToolkit {
 				} 
 				if (month == "02") {
 					lastDay=28;
-					if ( ((intendedYear % 4) == 0) && (!((intendedYear % 400) == 0) ) ) {
+					if ( ( (intendedYear % 400) == 0 ) || ( ( (intendedYear % 4)==0) && !((intendedYear % 100) == 0) ) ) {
 						lastDay=29;
 					}
 				}
@@ -1092,7 +1111,6 @@ class GS1DigitalLinkToolkit {
 					throw new Error("input to date conversion was a YYMMDD pattern with a value of DD too large for MM, e.g. 31st of June, 30th of February");
 				}
 		
-				var intendedYear = determineFourDigitYear(year);
 		
 				var intendedDate;
 
