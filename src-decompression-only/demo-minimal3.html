@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>Very minimal demo page for https://github.com/gs1/GS1DigitalLinkToolkit.js</title>
+<script src="GS1DigitalLinkToolkit-stripped-downES5.js"></script>
+</head>
+<body>
+<script language="javascript">
+var gs1dlt = new GS1DigitalLinkToolkit();
+var compressedGS1DL = "http://example.org/DgnYUc1gmji3NU0IREGFDTK2LJm";
+var useShortNames = true; // or false
+var uncompressedGS1DL;
+
+console.log("compressedGS1DL = "+compressedGS1DL);
+try {
+uncompressedGS1DL = gs1dlt.decompressGS1DigitalLink(compressedGS1DL,useShortNames);
+console.log("uncompressedGS1DL = "+uncompressedGS1DL);
+} catch (err) {
+console.log("Error: "+err+"\n"+err.stack);
+}
+</script>
+<p>Please view the JavaScript Console to see the result:</p>
+</body>
+</html>
