@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>Very minimal demo page for https://github.com/gs1/GS1DigitalLinkToolkit.js</title>
+<script src="GS1DigitalLinkToolkit-translation-ES5.js"></script>
+</head>
+<body>
+<script language="javascript">
+var gs1dlt = new GS1DigitalLinkToolkit();
+var uncompressedGS1DL = "http://example.org/gtin/05412345000013/lot/ABC%26%2B123?expdt=1903061658";
+var useBrackets = true; // or false
+var elementStrings;
+
+console.log("uncompressedGS1DL = "+uncompressedGS1DL);
+try {
+elementStrings = gs1dlt.gs1digitalLinkToGS1elementStrings(uncompressedGS1DL, useBrackets);
+console.log("elementStrings = "+elementStrings);
+} catch (err) {
+console.log("Error: "+err+"\n"+err.stack);
+}
+</script>
+<p>Please view the JavaScript Console to see the result:</p>
+</body>
+</html>
