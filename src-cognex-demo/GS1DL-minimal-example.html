@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="GS1DL-minified.js"></script>
+<script language="javascript">
+
+	var GS1DLURI = "https://example.com/gtin/01234567890128/lot/123/ser/ABC98765";
+	console.log("GS1 Digital Link URI input = "+GS1DLURI);
+	
+	
+	var elementStrings=GS1DLgs1digitalLinkToGS1elementStrings(GS1DLURI,true);
+	
+	console.log("elementStrings = "+elementStrings);
+
+</script>
+</head>
+<body>
+</body>
+</html>
