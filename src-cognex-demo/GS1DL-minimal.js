@@ -4307,7 +4307,19 @@ function GS1DLextractFromGS1digitalLink(gs1DigitalLinkURI) {
   var queryStringCandidates = s.queryStringCandidates;
   var nonGS1queryStringCandidates = {}; // merge pathCandidates and queryStringCandidates into a combined associative array, candidates
 
-  var candidates = Object.assign({}, pathCandidates, queryStringCandidates); // process candidates;
+  // var candidates = Object.assign({}, pathCandidates, queryStringCandidates); // process candidates;
+  var candidates={};
+	
+  for (var kpc in pathCandidates) {
+  	candidates[kpc]=pathCandidates[kpc];
+  }
+
+  for (var kqc in queryStringCandidates) {
+  	candidates[kqc]=queryStringCandidates[kqc];
+  }
+	
+  console.log("candidates="+JSON.stringify(candidates));
+
 
   for (var k in candidates) {
     if (candidates.hasOwnProperty(k)) {
