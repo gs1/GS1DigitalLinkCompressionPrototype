@@ -4318,7 +4318,6 @@ function GS1DLextractFromGS1digitalLink(gs1DigitalLinkURI) {
   	candidates[kqc]=queryStringCandidates[kqc];
   }
 	
-  console.log("candidates="+JSON.stringify(candidates));
 
 
   for (var k in candidates) {
