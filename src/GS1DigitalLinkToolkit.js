@@ -1225,6 +1225,21 @@ class GS1DigitalLinkToolkit {
 		// process URI path information
 		let pathCandidates={};
 		let pathElements = pathInfo.split("/");
+
+    // Added PhilA 2020-06-08
+		let pathElementIndex=0;
+    // We want to discard any path elements before the primary key
+    // So we check 3 things:
+    // Have we got any path elements left to look at - the length must be 2 or more
+    // If the first element is not an AI
+    // Or the first element is an AI but not a primary key
+    // If we get through that complex Boolean - shift, i.e. discard the first element
+    while ((pathElements.length > 1) && ((this.aitable.filter(x => x.ai === pathElements[pathElementIndex]).length === 0) || (this.aitable.find(x => x.ai === pathElements[pathElementIndex]).type != 'I'))) { 
+      console.log('Discarding ' + pathElements[pathElementIndex]);
+      pathElements.shift();
+    }
+    // End insertion
+
 		let l = pathElements.length;
 		let pathElementIndex=l-2;
 		while (pathElementIndex >= 0) {
