@@ -1224,7 +1224,8 @@ class GS1DigitalLinkToolkit {
 
 		// process URI path information
 		let pathCandidates={};
-		let pathElements = pathInfo.split("/");
+		// let pathElements = pathInfo.split("/");
+		let pathElements=relevantPathComponents;
 		let l = pathElements.length;
 		let pathElementIndex=l-2;
 		while (pathElementIndex >= 0) {
