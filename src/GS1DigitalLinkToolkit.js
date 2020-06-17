@@ -22,15 +22,19 @@ class GS1DigitalLinkToolkit {
 		const tableOpt = {"0A":["01","22"],"0B":["01","10"],"0C":["01","21"],"0D":["01","17"],"0E":["01","7003"],"0F":["01","30"],"1A":["01","10","21","17"],"1B":["01","15"],"1C":["01","11"],"1D":["01","16"],"1E":["01","91"],"1F":["01","10","15"],"2A":["01","3100"],"2B":["01","3101"],"2C":["01","3102"],"2D":["01","3103"],"2E":["01","3104"],"2F":["01","3105"],"3A":["01","3200"],"3B":["01","3201"],"3C":["01","3202"],"3D":["01","3203"],"3E":["01","3204"],"3F":["01","3205"],"9A":["8010","8011"],"9B":["8017","8019"],"9C":["8018","8019"],"9D":["414","254"],"A0":["01","3920"],"A1":["01","3921"],"A2":["01","3922"],"A3":["01","3923"],"A4":["01","3924"],"A5":["01","3925"],"A6":["01","3926"],"A7":["01","3927"],"A8":["01","3928"],"A9":["01","3929"],"C0":["255","3900"],"C1":["255","3901"],"C2":["255","3902"],"C3":["255","3903"],"C4":["255","3904"],"C5":["255","3905"],"C6":["255","3906"],"C7":["255","3907"],"C8":["255","3908"],"C9":["255","3909"],"CA":["255","3940"],"CB":["255","3941"],"CC":["255","3942"],"CD":["255","3943"]}
 
 
+		// tableS1 is used for the semantic interpretation and expresses which simple keys or compound keys are instance identifiers (uniquely identifying only one thing globally)
 		const tableS1 = {"01":{"requires":["21","235"]},"00": {"requires":null},"8006":{"requires":["21"]},"8010":{"requires":["8011"]},"8004":{"requires":null},"8003":{"minLength":15},"253":{"minLength":14},"254":{"minLength":14}}; // this is incomplete but sufficient for initial testing
 		// TODO extend tableS1 fully.  Format is primary key : null or list of AIs of which one must be specified.
+
+		// pathSequenceConstraints is used to ensure that for those primary identification keys in which multiple key qualifiers may appear in the URI path information, they SHALL appear in the expected order
+		// note that currently only GTIN (01) and ITIP (8006)  have more than one permitted key qualifier
+		const pathSequenceConstraints = {"01":["22","10","21"],"8006":["22","10","21"]};
 		
 		const stringSemantics = {"01":["gs1:gtin","schema:gtin"], "10":["gs1:hasBatchLot"], "21":["gs1:hasSerialNumber"], "235":["gs1:hasThirdPartyControlledSerialNumber"], "22":["gs1:consumerProductVariant"]};
 		
 		const classSemantics = {"01":["gs1:Product","schema:Product"],"8006":["gs1:Product","schema:Product"],"414":["gs1:Place","schema:Place"],"417":["gs1:Organization","schema:Organization"]};
 		
 		const dateSemantics = {"11":["gs1:productionDate"], "12":["gs1:dueDate"], "13":["gs1:packagingDate"], "15":["gs1:bestBeforeDate"], "16": ["gs1:sellByDate"], "17":["gs1:expirationDate"],"7006":["gs1:firstFreezeDate"]};
-		
 		const dateTimeSecondsSemantics = {"8008":["gs1:productionDateTime"] }; 
 		const dateTimeMinutesSemantics = {"7003": ["gs1:expirationDateTime"] }; 
 		const dateRangeSemantics = {"7007":["gs1:harvestDate"]};
@@ -268,6 +272,7 @@ class GS1DigitalLinkToolkit {
 		this.tableS1 = tableS1;
 		this.classSemantics = classSemantics;
 		this.stringSemantics = stringSemantics;
+		this.pathSequenceConstraints = pathSequenceConstraints;
 		this.dateSemantics = dateSemantics;
 		this.dateTimeSecondsSemantics = dateTimeSecondsSemantics;
 		this.dateTimeMinutesSemantics = dateTimeMinutesSemantics;
@@ -1331,6 +1336,47 @@ class GS1DigitalLinkToolkit {
 		let queryString=s.queryString;
 		let uriPathInfo=s.uriPathInfo; 
 		let pathCandidates = s.pathCandidates;
+
+		let splitPath  = uriPathInfo.split("/").slice(1);
+
+		let aiSeq=[];
+		let l=splitPath.length;
+		for (let i=l-1; i>=0; i--) {
+			if (i%2 ==1) {
+				let  k=splitPath[i];
+				if (!(this.regexAllNum.test(k))) {
+					k=this.shortCodeToNumeric[k];
+				}
+				aiSeq.push(k);
+			}
+		}
+		aiSeq=aiSeq.reverse();
+		
+		// check that the URI path components appear in the correct sequence
+		if (this.pathSequenceConstraints.hasOwnProperty(aiSeq[0])) {
+			let lastIndex=-1;
+			for (let j=1; j<aiSeq.length; j++) {
+				let i=this.pathSequenceConstraints[aiSeq[0]].indexOf(aiSeq[j]);
+				if (i <= lastIndex) {
+					throw new Error("Invalid GS1 Digital Link - invalid sequence of key qualifiers found in URI path information.");
+				}
+				lastIndex=i;
+			}
+		}
+		
+		
+
+		
+		for (let k in pathCandidates) {
+			if (pathCandidates.hasOwnProperty(k)) {
+				if (!(this.regexAllNum.test(k))) {
+					let numkey = this.shortCodeToNumeric[k];
+					console.log("numkey="+numkey);
+				}
+			}
+		}
+		
+		
 		let queryStringCandidates = s.queryStringCandidates;
 		let nonGS1queryStringCandidates={};
 		
@@ -1355,7 +1401,8 @@ class GS1DigitalLinkToolkit {
 			   }
 			}
 	    }			
-				
+		
+		// check that each entry in the associative array has correct syntax  and correct digit (where appropriate)		
 		for (let k in candidates) {
 			if (candidates.hasOwnProperty(k)) {
 					this.verifySyntax(k,candidates[k]);
@@ -1363,6 +1410,9 @@ class GS1DigitalLinkToolkit {
 					obj[k] = padGTIN(k,candidates[k]);
 			}
 		}
+		
+		
+		
 				
 		rv.GS1=obj;	
 		rv.other=nonGS1queryStringCandidates;
