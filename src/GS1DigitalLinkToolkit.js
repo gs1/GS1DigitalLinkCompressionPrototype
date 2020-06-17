@@ -1342,7 +1342,7 @@ class GS1DigitalLinkToolkit {
 		let aiSeq=[];
 		let l=splitPath.length;
 		for (let i=l-1; i>=0; i--) {
-			if (i%2 ==1) {
+			if (i%2 ==0) {
 				let  k=splitPath[i];
 				if (!(this.regexAllNum.test(k))) {
 					k=this.shortCodeToNumeric[k];
