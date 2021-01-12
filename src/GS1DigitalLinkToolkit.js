@@ -412,6 +412,7 @@ class GS1DigitalLinkToolkit {
 
 	base642bin(base64str) {
 		let rv="";
+				
 		for (let i=0; i<base64str.length; i++) {
 			let dec=this.safeBase64Alphabet.indexOf(base64str.substr(i,1));
 			let bin=dec.toString(2);
@@ -420,7 +421,7 @@ class GS1DigitalLinkToolkit {
 			}
 			rv+=bin;
 		}
-		
+				
 		return rv;
 	}
 
@@ -1681,7 +1682,7 @@ class GS1DigitalLinkToolkit {
 			case 0: 
 				// handle all-numeric encoding
 				let binLength=this.numberOfValueBits(charstr.length);
-				let binValue=parseInt(charstr).toString(2);
+				let binValue=BigInt(charstr).toString(2);
 				binValue=this.padToLength(binValue,binLength);
 				binstr+='000'+lengthBits+binValue;					
 				break;
@@ -1743,7 +1744,7 @@ class GS1DigitalLinkToolkit {
 				let numBitsForValue=this.numberOfValueBits(numChars);
 				let rbv=binstr.substr(cursor,numBitsForValue);
 				cursor+=numBitsForValue;
-				let s = parseInt(rbv,2).toString();
+				let s = BigInt("0b"+rbv).toString();
 				gs1AIarray[key]=s;
 				break;
 		
@@ -1940,7 +1941,7 @@ class GS1DigitalLinkToolkit {
 						let b1=this.numberOfValueBits(tx.L);
 						let rbv=binstr.substr(cursor,b1);
 						cursor+=b1;
-						let s=parseInt(rbv,2).toString();
+						let s=BigInt("0b"+rbv).toString();
 						s=this.padToLength(s,tx.L);
 						gs1AIarray[key]+=""+s;
 					}
@@ -1954,7 +1955,7 @@ class GS1DigitalLinkToolkit {
 						let numBitsForValue=this.numberOfValueBits(numDigits); 
 						let rbv=binstr.substr(cursor,numBitsForValue);
 						cursor+=numBitsForValue;
-						let s=parseInt(rbv,2).toString();
+						let s=BigInt("0b"+rbv).toString();
 						if (numDigits==0) { s=""; }
 
 						gs1AIarray[key]+=""+s;				
@@ -2141,7 +2142,7 @@ class GS1DigitalLinkToolkit {
 					// handle fixed-length numeric component
 					let charstr=value.substr(cursor,tx.L);
 					cursor+=parseInt(tx.L);
-					let binValue=this.padToLength(parseInt(charstr).toString(2),this.numberOfValueBits(tx.L));
+					let binValue=this.padToLength(BigInt(charstr).toString(2),this.numberOfValueBits(tx.L));
 					binstr+=binValue;
 				}
 
@@ -2150,7 +2151,7 @@ class GS1DigitalLinkToolkit {
 					let charstr=value.substr(cursor);
 					cursor+=charstr.length;
 					let lengthBits=this.padToLength((charstr.length).toString(2),this.numberOfLengthBits(tx.M));
-					let binValue=this.padToLength(parseInt(charstr).toString(2),this.numberOfValueBits(charstr.length));
+					let binValue=this.padToLength(BigInt(charstr).toString(2),this.numberOfValueBits(charstr.length));
 					binstr+=lengthBits+binValue;
 				}
 
