@@ -52,9 +52,11 @@ class GS1DigitalLinkToolkit {
 		const regexSafe64=new RegExp("^[A-Za-z0-9_-]+$");
 
 		const tableOptReverse={};
+		let tableOptClone = JSON.parse(JSON.stringify(tableOpt));
+
 		let tableOptKeys = Object.keys(tableOpt);
 		for (let i in tableOptKeys) {
-			tableOptReverse[JSON.stringify(tableOpt[tableOptKeys[i]].sort())]=tableOptKeys[i];
+			tableOptReverse[JSON.stringify(tableOptClone[tableOptKeys[i]].sort())]=tableOptKeys[i];
 		}
 
 		const aiRegex={};
