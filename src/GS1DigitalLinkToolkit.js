@@ -52,11 +52,9 @@ class GS1DigitalLinkToolkit {
 		const regexSafe64=new RegExp("^[A-Za-z0-9_-]+$");
 
 		const tableOptReverse={};
-		let tableOptClone = JSON.parse(JSON.stringify(tableOpt));
-
 		let tableOptKeys = Object.keys(tableOpt);
 		for (let i in tableOptKeys) {
-			tableOptReverse[JSON.stringify(tableOptClone[tableOptKeys[i]].sort())]=tableOptKeys[i];
+			tableOptReverse[JSON.stringify(tableOpt[tableOptKeys[i]].slice(0).sort())]=tableOptKeys[i];
 		}
 
 		const aiRegex={};
@@ -1374,7 +1372,6 @@ class GS1DigitalLinkToolkit {
 			if (pathCandidates.hasOwnProperty(k)) {
 				if (!(this.regexAllNum.test(k))) {
 					let numkey = this.shortCodeToNumeric[k];
-					console.log("numkey="+numkey);
 				}
 			}
 		}
@@ -1486,6 +1483,7 @@ class GS1DigitalLinkToolkit {
 		
 		// remove initial forward slash
 		uriPathInfo=uriPathInfo.substr(1);
+
 
 		if (this.regexSafe64.test(uriPathInfo)) {
 			let binstr=this.base642bin(uriPathInfo);
@@ -1686,7 +1684,7 @@ class GS1DigitalLinkToolkit {
 				let binLength=this.numberOfValueBits(charstr.length);
 				let binValue=BigInt(charstr).toString(2);
 				binValue=this.padToLength(binValue,binLength);
-				binstr+='000'+lengthBits+binValue;					
+				binstr+='000'+lengthBits+binValue;	
 				break;
 
 			case 1: 
@@ -1747,35 +1745,35 @@ class GS1DigitalLinkToolkit {
 				let rbv=binstr.substr(cursor,numBitsForValue);
 				cursor+=numBitsForValue;
 				let s = BigInt("0b"+rbv).toString();
-				gs1AIarray[key]=s;
+				gs1AIarray[key]+=s;
 				break;
 		
 			case 1:
 			// lower case hexadecimal characters
 				rv=buildString(numChars,this.hexAlphabet,cursor,4,binstr);
 				cursor=rv.cursor;
-				gs1AIarray[key]=rv.s.toLowerCase();
+				gs1AIarray[key]+=rv.s.toLowerCase();
 				break;
 
 			case 2:
 			// upper case hexadecimal characters
 				rv=buildString(numChars,this.hexAlphabet,cursor,4,binstr);
 				cursor=rv.cursor;
-				gs1AIarray[key]=rv.s.toUpperCase();
+				gs1AIarray[key]+=rv.s.toUpperCase();
 				break;
 
 			case 3:
 			// URI safe base64 alphabet at 6 bits per character
 				rv=buildString(numChars,this.safeBase64Alphabet,cursor,6,binstr);
 				cursor=rv.cursor;
-				gs1AIarray[key]=rv.s;					
+				gs1AIarray[key]+=rv.s;					
 				break;
 
 			case 4 :
 			// ASCII at 7 bits per character
 				rv=buildString(numChars,null,cursor,7,binstr);
 				cursor=rv.cursor;
-				gs1AIarray[key]=rv.s;					
+				gs1AIarray[key]+=rv.s;					
 				break;
 
 		}
@@ -2163,7 +2161,7 @@ class GS1DigitalLinkToolkit {
 					cursor+=parseInt(tx.L);
 					let enc=this.determineEncoding(charstr);
 					let lengthBits="";
-					binstr+=this.handleEncodings(enc,lengthBits,charstr,binstr);
+					binstr=this.handleEncodings(enc,lengthBits,charstr,binstr);
 				}
 
 				if ((tx.hasOwnProperty("M")) && (tx.E == "X")) {
@@ -2172,7 +2170,7 @@ class GS1DigitalLinkToolkit {
 					cursor+=charstr.length;
 					let lengthBits=this.padToLength((charstr.length).toString(2),this.numberOfLengthBits(tx.M));
 					let enc=this.determineEncoding(charstr);
-					binstr+=this.handleEncodings(enc,lengthBits,charstr,binstr);
+					binstr=this.handleEncodings(enc,lengthBits,charstr,binstr);
 				}
 			}
 		}
