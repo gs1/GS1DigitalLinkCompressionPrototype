@@ -1,8 +1,8 @@
 # GS1DigitalLinkCompressionPrototype
-This is a JavaScript toolkit for translating between GS1 element strings and GS1 Digital Link URIs and including highly experimental reversible compression functions
+This is a JavaScript toolkit for translating between GS1 element strings and GS1 Digital Link URIs. It includes reversible compression functions, as defined in the [GS1 Digital Link standard](https://www.gs1.org/standards/gs1-digital-link).
 
 
-* [Introduction](#introduction)
+* [Introduction and status](#introduction)
 * [Overview](#overview)
 * [Installation](#installation)
 * [Basic Usage](#basic-usage)
@@ -12,21 +12,21 @@ This is a JavaScript toolkit for translating between GS1 element strings and GS1
 * [Disclaimer](#disclaimer)
 * [Licence](#licence)
 
-## Introduction
+## Introduction and status
 
-The GS1 identification system is widely used worldwide within product barcodes, as well as within barcodes for shipments, assets, locations, etc.
-
-Further information about GS1 can be found at https://www.gs1.org
+The [GS1](https://www.gs1.org) identification system is widely used worldwide within product barcodes, as well as within barcodes for shipments, assets, locations, etc.
 
 Details about the GS1 identification system and GS1 Application Identifiers can be found in the GS1 General Specifications at https://www.gs1.org/docs/barcodes/GS1_General_Specifications.pdf and a searchable list of GS1 Application Identifiers is at https://www.gs1.org/standards/barcodes/application-identifiers?lang=en 
 
-GS1 Digital Link is a new Web URI syntax for expressing GS1 Application Identifiers and their values in a Web-friendly format, to make it easier to connect identifiers of products, shipments, locations, assets etc. to related online information and services on the Web via simple Web redirects using Web resolver infrastructure.
+GS1 Digital Link is a Web URI syntax for expressing GS1 Application Identifiers and their values in a Web-friendly format, to make it easier to connect identifiers of products, shipments, locations, assets etc. to related online information and services on the Web via simple Web redirects using Web resolver infrastructure.
 
-The GS1 Digital Link syntax is defined in https://www.gs1.org/standards/Digital-Link/1-0
+The syntax is part of the [GS1 Digital Link standard](https://www.gs1.org/standards/Digital-Link)
 
-A demonstration tool is available at https://id.gs1.org/uritool although it does not currently use this toolkit
+The library in this repository was developed alongside the compression/decompression alogorithm defined in that standard. At the time, it was considered experimental and was therefore not included in the [GS1 Digital Link toolkit](https://github.com/gs1/GS1DigitalLinkToolkit.js). Since then, the algorithm has been confirmed (with slight additions in version 1.2 of the standard), and a couple of minor bugs have been found (and corrected). 
 
-See also https://github.com/gs1/digital-link.js for a related toolkit for GS1 Digital Link
+A near-future task is to combine this library with the GS1 Digital Link toolkit and to modularize everything so you can just import the code for the functions you need.
+
+Looking for an alternative implementation? See the [Trust Codes compression/decompression](https://github.com/TrustCodes/gs1-compression) Python library.
 
 ## Overview
 
