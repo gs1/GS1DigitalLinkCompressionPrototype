@@ -359,11 +359,23 @@ class GS1DigitalLinkToolkit {
 	// tests the syntax of a value against the regular expression (expected format)
 	// throws an error when invalid syntax is detected
 	// e.g. verifySyntax('01','01234567890128');
-	verifySyntax(ai,value) {
+	verifySyntax(ai,value, flag) {
+		
+		console.log("verifySyntax(ai = "+ai+", value = "+value+", flag = "+flag);
+		console.log("this.aiRegex[ai] = "+this.aiRegex[ai]);
+
 		if ((ai !== null) && (this.regexAllNum.test(ai))) {
-			if (!(this.aiRegex[ai].test(value))) {
-				throw "SYNTAX ERROR: invalid syntax for value of ("+ai+")"+value;
+			let testvalue=value;
+			if (flag) {
+				// the value must be percent decoded first before checking against regex.
+				testvalue = decodeURIComponent(value);
 			}
+	
+			if (!(this.aiRegex[ai].test(testvalue))) {
+				console.log("SYNTAX ERROR: invalid syntax for value of ("+ai+")"+testvalue);
+				throw "SYNTAX ERROR: invalid syntax for value of ("+ai+")"+testvalue;
+			}
+			
 		}
 	}
 
@@ -620,7 +632,7 @@ class GS1DigitalLinkToolkit {
 			throw new Error("The element string should contain exactly one primary identification key - it contained "+identifiers.length+" "+JSON.stringify(identifiers)+"; please check for a syntax error");
 		} else {
 
-			this.verifySyntax(identifiers[0],gs1AIarray[identifiers[0]]);
+			this.verifySyntax(identifiers[0],gs1AIarray[identifiers[0]],false);
 
 		
 			this.verifyCheckDigit(identifiers[0],gs1AIarray[identifiers[0]]);
@@ -729,6 +741,8 @@ class GS1DigitalLinkToolkit {
 
 	// new method that converts a flat associative array of GS1 Application Identifiers and their values into a more structured object in which the primary identification key, key qualifiers, data attributes and other key=value pairs from the URI string are clearly identified as such.
 	buildStructuredArray(gs1AIarray,otherArray) {
+		console.log("Line 744 buildStructuredArray has been called");
+	
 		let keys=["identifiers","qualifiers","dataAttributes"];
 		let map={};
 		map.identifiers=[];
@@ -769,8 +783,16 @@ class GS1DigitalLinkToolkit {
 			valid=false;
 			throw new Error("The element string should contain exactly one primary identification key - it contained "+map.identifiers.length+" "+JSON.stringify(map.identifiers)+"; please check for a syntax error");
 		} else {
-			this.verifySyntax(map.identifiers[0],gs1AIarray[map.identifiers[0]]);
-			this.verifyCheckDigit(map.identifiers[0],gs1AIarray[map.identifiers[0]]);
+			console.log("At line 784 gs1AIarray = "+JSON.stringify(gs1AIarray));
+			console.log("At line 785 map = "+JSON.stringify(map));
+			console.log("At line 786 map.identifiers[0] = "+JSON.stringify(map.identifiers[0]));
+			let primaryAI = Object.keys(map.identifiers[0])[0];
+			console.log("At line 787 the AI = "+primaryAI);
+			let primaryAIvalue = Object.values(map.identifiers[0])[0];
+			console.log("At line 788 the value = "+primaryAIvalue);
+			// console.log("At line 787 value = "+gs1AIarray[map.identifiers[0]]);
+			this.verifySyntax(primaryAI,primaryAIvalue,false);
+			this.verifyCheckDigit(primaryAI,primaryAIvalue);
 		}
 		return map;
 	}
@@ -778,19 +800,18 @@ class GS1DigitalLinkToolkit {
 	
 	analyseURIsemantics(gs1DigitalLinkURI) {
 		let rv=this.analyseURI(gs1DigitalLinkURI,true);
+		
+		console.log("At line 794 rv="+JSON.stringify(rv));
+		
 		let uncompressedDL=gs1DigitalLinkURI;
 				
 		if ((rv.detected == "fully compressed GS1 Digital Link") || (rv.detected == "partially compressed GS1 Digital Link")) {
 			uncompressedDL=this.decompressGS1DigitalLink(gs1DigitalLinkURI,false,rv.uriStem);	
 			
 		}
-		
-				
-		let excludeQueryString=uncompressedDL;
 		let qpos=uncompressedDL.indexOf("?");
-		if (qpos> -1) {
-		excludeQueryString=uncompressedDL.substr(0,qpos);
-		}
+		let excludeQueryString=uncompressedDL.substr(0,qpos);
+		
 		
 		let rv2=this.analyseURI(excludeQueryString,false);
 
@@ -827,6 +848,7 @@ class GS1DigitalLinkToolkit {
 		let aiKeys = Object.keys(elementStrings);
 		
 
+		console.log("rv.structuredOutput = "+JSON.stringify(rv.structuredOutput));
 		rv.primaryIdentifierMap = rv.structuredOutput.identifiers[0];
 		
 		let pimK = Object.keys(rv.primaryIdentifierMap);
@@ -863,7 +885,6 @@ class GS1DigitalLinkToolkit {
 			
 		}
 		
-				
 		if (isInstanceIdentifier) {
 		outputObject["@id"]=excludeQueryString; // this is now the uncompressed GS1 Digital Link without the query string
 		let osa = [uncompressedDL];
@@ -1141,6 +1162,9 @@ class GS1DigitalLinkToolkit {
 	}
 	
 	analyseURI(gs1DigitalLinkURI,extended) {
+
+		console.log("line 1166 analyseURI has been called.");
+
 		let rv={};
 	
 		rv.fragment="";
@@ -1184,6 +1208,9 @@ class GS1DigitalLinkToolkit {
 		let domain = afterProtocol.substr(0,firstSlashOfAllPath);
 	
 		let pathComponents=pathInfo.split("/");
+
+
+		console.log("line 1213 pathComponents = "+JSON.stringify(pathComponents));
 
 
 		// iterate through pathComponents to find the path component corresponding to a primary GS1 ID key
@@ -1274,6 +1301,8 @@ class GS1DigitalLinkToolkit {
 		rv.structuredOutput="";
 		
 		if ((relevantPathComponents.length > 0) && ((relevantPathComponents.length % 2) == 0)) {
+			console.log("At line 1304, relevantPathComponents[1]="+relevantPathComponents[1]);
+			
 			if (this.aiRegex[numericPrimaryIdentifier].test(decodeURIComponent(relevantPathComponents[1]))) {
 				rv.detected = "uncompressed GS1 Digital Link";
 			
@@ -1282,6 +1311,9 @@ class GS1DigitalLinkToolkit {
 				
 				if (extended) {
 					let extracted = this.extractFromGS1digitalLink(gs1DigitalLinkURI);
+					
+					console.log("Line 1310 extracted = "+JSON.stringify(extracted));
+					
 					let gs1AIarray = extracted.GS1;
 					let otherArray = extracted.other;
 					let structuredArray = this.buildStructuredArray(gs1AIarray,otherArray);	
@@ -1410,7 +1442,10 @@ class GS1DigitalLinkToolkit {
 		// check that each entry in the associative array has correct syntax  and correct digit (where appropriate)		
 		for (let k in candidates) {
 			if (candidates.hasOwnProperty(k)) {
-					this.verifySyntax(k,candidates[k]);
+
+					console.log("At line 1414, k="+k+", candidates[k]="+candidates[k]);
+
+					this.verifySyntax(k,candidates[k],true);
 					this.verifyCheckDigit(k,candidates[k]);
 					obj[k] = padGTIN(k,candidates[k]);
 			}
@@ -1585,7 +1620,7 @@ class GS1DigitalLinkToolkit {
 				throw new Error("The associative array should contain exactly one primary identification key - it contained "+identifiers.length+" "+JSON.stringify(identifiers)+"; please check for a syntax error");
 			} else {
 
-				this.verifySyntax(identifiers[0],gs1AIarray[identifiers[0]]);
+				this.verifySyntax(identifiers[0],gs1AIarray[identifiers[0]],true);
 				this.verifyCheckDigit(identifiers[0],gs1AIarray[identifiers[0]]);
 
 				elementStrings = elementStringsPush(elementStrings,"("+identifiers[0]+")",gs1AIarray[identifiers[0]],"");
