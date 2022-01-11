@@ -31,7 +31,7 @@ class GS1DigitalLinkToolkit {
 		
 		const stringSemantics = {"01":["gs1:gtin","schema:gtin"], "10":["gs1:hasBatchLot"], "21":["gs1:hasSerialNumber"], "235":["gs1:hasThirdPartyControlledSerialNumber"], "22":["gs1:consumerProductVariant"]};
 		
-		const classSemantics = {"01":["gs1:Product","schema:Product"],"8006":["gs1:Product","schema:Product"],"414":["gs1:Place","schema:Place"],"417":["gs1:Organization","schema:Organization"]};
+		const classSemantics = {"01":["gs1:Product","schema:Product"],"8006":["gs1:Product","schema:Product"],"414":["gs1:Place","schema:Place"],"417":["gs1:Organization","schema:Organization"],"00":["gs1:LogisticUnit"]};
 		
 		const dateSemantics = {"11":["gs1:productionDate"], "12":["gs1:dueDate"], "13":["gs1:packagingDate"], "15":["gs1:bestBeforeDate"], "16": ["gs1:sellByDate"], "17":["gs1:expirationDate"],"7006":["gs1:firstFreezeDate"]};
 		const dateTimeSecondsSemantics = {"8008":["gs1:productionDateTime"] }; 
