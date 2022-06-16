@@ -615,10 +615,10 @@ class GS1DigitalLinkToolkit {
 		// Start building Web URI path expression
 		// need exactly one identifier key
 
-		if (identifiers.length !== 1) {
-			valid=false;
-			throw new Error("The element string should contain exactly one primary identification key - it contained "+identifiers.length+" "+JSON.stringify(identifiers)+"; please check for a syntax error");
-		} else {
+//		if (identifiers.length !== 1) {
+//			valid=false;
+//			throw new Error("The element string should contain exactly one primary identification key - it contained "+identifiers.length+" "+JSON.stringify(identifiers)+"; please check for a syntax error");
+//		} else {
 
 			this.verifySyntax(identifiers[0],gs1AIarray[identifiers[0]]);
 
@@ -720,7 +720,7 @@ class GS1DigitalLinkToolkit {
 				}
 	
 
-		}
+//		}
 			
 
 		return webURI;	
@@ -766,13 +766,13 @@ class GS1DigitalLinkToolkit {
 		
 		
 		// need exactly one identifier key
-		if (map.identifiers.length !== 1) {
-			valid=false;
-			throw new Error("The element string should contain exactly one primary identification key - it contained "+map.identifiers.length+" "+JSON.stringify(map.identifiers)+"; please check for a syntax error");
-		} else {
+//		if (map.identifiers.length !== 1) {
+//			valid=false;
+//			throw new Error("The element string should contain exactly one primary identification key - it contained "+map.identifiers.length+" "+JSON.stringify(map.identifiers)+"; please check for a syntax error");
+//		} else {
 			this.verifySyntax(map.identifiers[0],gs1AIarray[map.identifiers[0]]);
 			this.verifyCheckDigit(map.identifiers[0],gs1AIarray[map.identifiers[0]]);
-		}
+//		}
 
 		console.log("map = "+JSON.stringify(map));
 
@@ -1590,9 +1590,9 @@ class GS1DigitalLinkToolkit {
 
 		if (brackets==true) {
 
-			if (identifiers.length !== 1) {
-				throw new Error("The associative array should contain exactly one primary identification key - it contained "+identifiers.length+" "+JSON.stringify(identifiers)+"; please check for a syntax error");
-			} else {
+//			if (identifiers.length !== 1) {
+//				throw new Error("The associative array should contain exactly one primary identification key - it contained "+identifiers.length+" "+JSON.stringify(identifiers)+"; please check for a syntax error");
+//			} else {
 
 				this.verifySyntax(identifiers[0],gs1AIarray[identifiers[0]]);
 				this.verifyCheckDigit(identifiers[0],gs1AIarray[identifiers[0]]);
@@ -1617,7 +1617,7 @@ class GS1DigitalLinkToolkit {
 				for (let a in sortedAttributes) {
 					elementStrings = elementStringsPush(elementStrings, "("+attributes[a]+")",gs1AIarray[attributes[a]],"");
 				}
-			}
+//			}
 			
 		} else {
 		// if brackets=false, concatenate defined-length AIs first, then variable-length AIs
