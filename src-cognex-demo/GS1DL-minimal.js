@@ -39,7 +39,7 @@ var GS1DLaitable = [{
   "format": "X..20",
   "type": "Q",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,20})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,20})"
 }, {
   "title": "Production date (YYMMDD)",
   "label": "PROD DATE",
@@ -105,7 +105,7 @@ var GS1DLaitable = [{
   "format": "X..20",
   "type": "Q",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,20})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,20})"
 }, {
   "title": "Consumer product variant",
   "label": "CPV",
@@ -114,7 +114,7 @@ var GS1DLaitable = [{
   "format": "X..20",
   "type": "Q",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,20})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,20})"
 }, {
   "title": "Additional product identification assigned by the manufacturer",
   "label": "ADDITIONAL ID",
@@ -122,7 +122,7 @@ var GS1DLaitable = [{
   "format": "X..30",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,30})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,30})"
 }, {
   "title": "Customer part number",
   "label": "CUST. PART NO.",
@@ -130,7 +130,7 @@ var GS1DLaitable = [{
   "format": "X..30",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,30})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,30})"
 }, {
   "title": "Made-to-Order variation number",
   "label": "MTO VARIANT",
@@ -146,7 +146,7 @@ var GS1DLaitable = [{
   "format": "X..20",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,20})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,20})"
 }, {
   "title": "Secondary serial number",
   "label": "SECONDARY SERIAL",
@@ -154,7 +154,7 @@ var GS1DLaitable = [{
   "format": "X..30",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,30})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,30})"
 }, {
   "title": "Reference to source entity",
   "label": "REF. TO SOURCE ",
@@ -162,7 +162,7 @@ var GS1DLaitable = [{
   "format": "X..30",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,30})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,30})"
 }, {
   "title": "Global Document Type Identifier (GDTI)",
   "label": "GDTI",
@@ -172,7 +172,7 @@ var GS1DLaitable = [{
   "type": "I",
   "fixedLength": false,
   "checkDigit": "13",
-  "regex": "(\\d{13})([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,17})"
+  "regex": "(\\d{13})([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,17})"
 }, {
   "title": "GLN extension component",
   "label": "GLN EXTENSION COMPONENT",
@@ -181,7 +181,7 @@ var GS1DLaitable = [{
   "format": "X..20",
   "type": "Q",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,20})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,20})"
 }, {
   "title": "Global Coupon Number (GCN)",
   "label": "GCN",
@@ -3111,7 +3111,7 @@ var GS1DLaitable = [{
   "format": "X..30",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,30})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,30})"
 }, {
   "title": "Global Identification Number for Consignment (GINC)",
   "label": "GINC",
@@ -3120,7 +3120,7 @@ var GS1DLaitable = [{
   "format": "X..30",
   "type": "I",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,30})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,30})"
 }, {
   "title": "Global Shipment Identification Number (GSIN)",
   "label": "GSIN",
@@ -3138,7 +3138,7 @@ var GS1DLaitable = [{
   "format": "X..30",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,30})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,30})"
 }, {
   "title": "Ship to - Deliver to Global Location Number",
   "label": "SHIP TO LOC",
@@ -3212,7 +3212,7 @@ var GS1DLaitable = [{
   "format": "X..20",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,20})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,20})"
 }, {
   "title": "Ship to - Deliver to postal code with ISO country code",
   "label": "SHIP TO POST",
@@ -3220,7 +3220,7 @@ var GS1DLaitable = [{
   "format": "N3+X..9",
   "type": "D",
   "fixedLength": false,
-  "regex": "(\\d{3})([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,9})"
+  "regex": "(\\d{3})([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,9})"
 }, {
   "title": "Country of origin of a trade item",
   "label": "ORIGIN",
@@ -3268,7 +3268,7 @@ var GS1DLaitable = [{
   "format": "X..3",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,3})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,3})"
 }, {
   "title": "NATO Stock Number (NSN)",
   "label": "NSN",
@@ -3284,7 +3284,7 @@ var GS1DLaitable = [{
   "format": "X..30",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,30})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,30})"
 }, {
   "title": "Expiration date and time",
   "label": "EXPIRY TIME",
@@ -3309,7 +3309,7 @@ var GS1DLaitable = [{
   "format": "X..12",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,12})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,12})"
 }, {
   "title": "First freeze date ",
   "label": "FIRST FREEZE DATE",
@@ -3333,7 +3333,7 @@ var GS1DLaitable = [{
   "format": "X..3",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,3})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,3})"
 }, {
   "title": "Fishing gear type",
   "label": "FISHING GEAR TYPE",
@@ -3341,7 +3341,7 @@ var GS1DLaitable = [{
   "format": "X..10",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,10})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,10})"
 }, {
   "title": "Production method",
   "label": "PROD METHOD",
@@ -3349,7 +3349,7 @@ var GS1DLaitable = [{
   "format": "X..2",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,2})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,2})"
 }, {
   "title": "Refurbishment lot ID",
   "label": "REFURB LOT",
@@ -3357,7 +3357,7 @@ var GS1DLaitable = [{
   "format": "X..20",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,20})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,20})"
 }, {
   "title": "Functional status",
   "label": "FUNC STAT",
@@ -3365,7 +3365,7 @@ var GS1DLaitable = [{
   "format": "X..20",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,20})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,20})"
 }, {
   "title": "Revision status",
   "label": "REV STAT",
@@ -3373,7 +3373,7 @@ var GS1DLaitable = [{
   "format": "X..20",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,20})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,20})"
 }, {
   "title": "Global Individual Asset Identifier (GIAI) of an assembly",
   "label": "GIAI - ASSEMBLY",
@@ -3381,7 +3381,7 @@ var GS1DLaitable = [{
   "format": "X..30",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,30})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,30})"
 }, {
   "title": "Number of processor with ISO Country Code",
   "label": "PROCESSOR # 0",
@@ -3389,7 +3389,7 @@ var GS1DLaitable = [{
   "format": "X..27",
   "type": "D",
   "fixedLength": false,
-  "regex": "(\\d{3})([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,27})"
+  "regex": "(\\d{3})([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,27})"
 }, {
   "title": "Number of processor with ISO Country Code",
   "label": "PROCESSOR # 1",
@@ -3397,7 +3397,7 @@ var GS1DLaitable = [{
   "format": "X..27",
   "type": "D",
   "fixedLength": false,
-  "regex": "(\\d{3})([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,27})"
+  "regex": "(\\d{3})([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,27})"
 }, {
   "title": "Number of processor with ISO Country Code",
   "label": "PROCESSOR # 2",
@@ -3405,7 +3405,7 @@ var GS1DLaitable = [{
   "format": "X..27",
   "type": "D",
   "fixedLength": false,
-  "regex": "(\\d{3})([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,27})"
+  "regex": "(\\d{3})([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,27})"
 }, {
   "title": "Number of processor with ISO Country Code",
   "label": "PROCESSOR # 3",
@@ -3413,7 +3413,7 @@ var GS1DLaitable = [{
   "format": "X..27",
   "type": "D",
   "fixedLength": false,
-  "regex": "(\\d{3})([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,27})"
+  "regex": "(\\d{3})([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,27})"
 }, {
   "title": "Number of processor with ISO Country Code",
   "label": "PROCESSOR # 4",
@@ -3421,7 +3421,7 @@ var GS1DLaitable = [{
   "format": "X..27",
   "type": "D",
   "fixedLength": false,
-  "regex": "(\\d{3})([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,27})"
+  "regex": "(\\d{3})([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,27})"
 }, {
   "title": "Number of processor with ISO Country Code",
   "label": "PROCESSOR # 5",
@@ -3429,7 +3429,7 @@ var GS1DLaitable = [{
   "format": "X..27",
   "type": "D",
   "fixedLength": false,
-  "regex": "(\\d{3})([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,27})"
+  "regex": "(\\d{3})([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,27})"
 }, {
   "title": "Number of processor with ISO Country Code",
   "label": "PROCESSOR # 6",
@@ -3437,7 +3437,7 @@ var GS1DLaitable = [{
   "format": "X..27",
   "type": "D",
   "fixedLength": false,
-  "regex": "(\\d{3})([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,27})"
+  "regex": "(\\d{3})([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,27})"
 }, {
   "title": "Number of processor with ISO Country Code",
   "label": "PROCESSOR # 7",
@@ -3445,7 +3445,7 @@ var GS1DLaitable = [{
   "format": "X..27",
   "type": "D",
   "fixedLength": false,
-  "regex": "(\\d{3})([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,27})"
+  "regex": "(\\d{3})([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,27})"
 }, {
   "title": "Number of processor with ISO Country Code",
   "label": "PROCESSOR # 8",
@@ -3453,7 +3453,7 @@ var GS1DLaitable = [{
   "format": "X..27",
   "type": "D",
   "fixedLength": false,
-  "regex": "(\\d{3})([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,27})"
+  "regex": "(\\d{3})([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,27})"
 }, {
   "title": "Number of processor with ISO Country Code",
   "label": "PROCESSOR # 9",
@@ -3461,7 +3461,7 @@ var GS1DLaitable = [{
   "format": "X..27",
   "type": "D",
   "fixedLength": false,
-  "regex": "(\\d{3})([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,27})"
+  "regex": "(\\d{3})([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,27})"
 }, {
   "title": "National Healthcare Reimbursement Number (NHRN) - Germany PZN",
   "label": "NHRN PZN",
@@ -3469,7 +3469,7 @@ var GS1DLaitable = [{
   "format": "X..20",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,20})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,20})"
 }, {
   "title": "National Healthcare Reimbursement Number (NHRN) - France CIP",
   "label": "NHRN CIP",
@@ -3477,7 +3477,7 @@ var GS1DLaitable = [{
   "format": "X..20",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,20})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,20})"
 }, {
   "title": "National Healthcare Reimbursement Number (NHRN) - Spain CN",
   "label": "NHRN CN",
@@ -3485,7 +3485,7 @@ var GS1DLaitable = [{
   "format": "X..20",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,20})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,20})"
 }, {
   "title": "National Healthcare Reimbursement Number (NHRN) - Brasil DRN",
   "label": "NHRN DRN",
@@ -3493,7 +3493,7 @@ var GS1DLaitable = [{
   "format": "X..20",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,20})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,20})"
 }, {
   "title": "National Healthcare Reimbursement Number (NHRN) - Portugal AIM",
   "label": "NHRN AIM",
@@ -3501,7 +3501,7 @@ var GS1DLaitable = [{
   "format": "X..20",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,20})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,20})"
 }, {
   "title": "Certification reference # 0",
   "label": "CERT # 0",
@@ -3509,7 +3509,7 @@ var GS1DLaitable = [{
   "format": "X2+X..28",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{2,30})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{2,30})"
 }, {
   "title": "Certification reference # 1",
   "label": "CERT # 1",
@@ -3517,7 +3517,7 @@ var GS1DLaitable = [{
   "format": "X2+X..28",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{2,30})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{2,30})"
 }, {
   "title": "Certification reference # 2",
   "label": "CERT # 2",
@@ -3525,7 +3525,7 @@ var GS1DLaitable = [{
   "format": "X2+X..28",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{2,30})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{2,30})"
 }, {
   "title": "Certification reference # 3",
   "label": "CERT # 3",
@@ -3533,7 +3533,7 @@ var GS1DLaitable = [{
   "format": "X2+X..28",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{2,30})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{2,30})"
 }, {
   "title": "Certification reference # 4",
   "label": "CERT # 4",
@@ -3541,7 +3541,7 @@ var GS1DLaitable = [{
   "format": "X2+X..28",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{2,30})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{2,30})"
 }, {
   "title": "Certification reference # 5",
   "label": "CERT # 5",
@@ -3549,7 +3549,7 @@ var GS1DLaitable = [{
   "format": "X2+X..28",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{2,30})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{2,30})"
 }, {
   "title": "Certification reference # 6",
   "label": "CERT # 6",
@@ -3557,7 +3557,7 @@ var GS1DLaitable = [{
   "format": "X2+X..28",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{2,30})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{2,30})"
 }, {
   "title": "Certification reference # 7",
   "label": "CERT # 7",
@@ -3565,7 +3565,7 @@ var GS1DLaitable = [{
   "format": "X2+X..28",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{2,30})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{2,30})"
 }, {
   "title": "Certification reference # 8",
   "label": "CERT # 8",
@@ -3573,7 +3573,7 @@ var GS1DLaitable = [{
   "format": "X2+X..28",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{2,30})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{2,30})"
 }, {
   "title": "Certification reference # 9",
   "label": "CERT # 9",
@@ -3581,7 +3581,7 @@ var GS1DLaitable = [{
   "format": "X2+X..28",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{2,30})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{2,30})"
 }, {
   "title": "Roll products (width, length, core diameter, direction, splices)",
   "label": "DIMENSIONS",
@@ -3597,7 +3597,7 @@ var GS1DLaitable = [{
   "format": "X..20",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,20})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,20})"
 }, {
   "title": "Global Returnable Asset Identifier (GRAI)",
   "label": "GRAI",
@@ -3607,7 +3607,7 @@ var GS1DLaitable = [{
   "type": "I",
   "fixedLength": false,
   "checkDigit": "14",
-  "regex": "(\\d{14})([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,16})"
+  "regex": "(\\d{14})([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,16})"
 }, {
   "title": "Global Individual Asset Identifier (GIAI)",
   "label": "GIAI",
@@ -3616,7 +3616,7 @@ var GS1DLaitable = [{
   "format": "X..30",
   "type": "I",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,30})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,30})"
 }, {
   "title": "Price per unit of measure",
   "label": "PRICE PER UNIT",
@@ -3643,7 +3643,7 @@ var GS1DLaitable = [{
   "format": "X..34",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,34})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,34})"
 }, {
   "title": "Date and time of production",
   "label": "PROD TIME",
@@ -3659,7 +3659,7 @@ var GS1DLaitable = [{
   "format": "X..50",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,50})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,50})"
 }, {
   "title": "Component/Part Identifier (CPID)",
   "label": "CPID",
@@ -3686,7 +3686,7 @@ var GS1DLaitable = [{
   "format": "X..20",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,20})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,20})"
 }, {
   "title": "Global Model Number (GMN)",
   "label": "GMN (for medical devices, the default, global data title is BUDI-DI )",
@@ -3694,7 +3694,7 @@ var GS1DLaitable = [{
   "format": "X..30",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,30})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,30})"
 }, {
   "title": "Global Service Relation Number - Provider",
   "label": "GSRN - PROVIDER",
@@ -3733,7 +3733,7 @@ var GS1DLaitable = [{
   "format": "X..25",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,25})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,25})"
 }, {
   "title": "Identification of pieces of a trade item contained in a logistics unit",
   "label": "ITIP CONTENT",
@@ -3749,7 +3749,7 @@ var GS1DLaitable = [{
   "format": "X..70",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,70})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,70})"
 }, {
   "title": "Loyalty points of a coupon",
   "label": "POINTS",
@@ -3764,7 +3764,7 @@ var GS1DLaitable = [{
   "format": "X..70",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,70})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,70})"
 }, {
   "title": "Extended Packaging URL ",
   "label": "PRODUCT URL",
@@ -3772,7 +3772,7 @@ var GS1DLaitable = [{
   "format": "X..70",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,70})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,70})"
 }, {
   "title": "Information mutually agreed between trading partners",
   "label": "INTERNAL",
@@ -3780,7 +3780,7 @@ var GS1DLaitable = [{
   "format": "X..30",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,30})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,30})"
 }, {
   "title": "Company internal information",
   "label": "INTERNAL",
@@ -3788,7 +3788,7 @@ var GS1DLaitable = [{
   "format": "X..90",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,90})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,90})"
 }, {
   "title": "Company internal information",
   "label": "INTERNAL",
@@ -3796,7 +3796,7 @@ var GS1DLaitable = [{
   "format": "X..90",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,90})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,90})"
 }, {
   "title": "Company internal information",
   "label": "INTERNAL",
@@ -3804,7 +3804,7 @@ var GS1DLaitable = [{
   "format": "X..90",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,90})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,90})"
 }, {
   "title": "Company internal information",
   "label": "INTERNAL",
@@ -3812,7 +3812,7 @@ var GS1DLaitable = [{
   "format": "X..90",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,90})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,90})"
 }, {
   "title": "Company internal information",
   "label": "INTERNAL",
@@ -3820,7 +3820,7 @@ var GS1DLaitable = [{
   "format": "X..90",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,90})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,90})"
 }, {
   "title": "Company internal information",
   "label": "INTERNAL",
@@ -3828,7 +3828,7 @@ var GS1DLaitable = [{
   "format": "X..90",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,90})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,90})"
 }, {
   "title": "Company internal information",
   "label": "INTERNAL",
@@ -3836,7 +3836,7 @@ var GS1DLaitable = [{
   "format": "X..90",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,90})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,90})"
 }, {
   "title": "Company internal information",
   "label": "INTERNAL",
@@ -3844,7 +3844,7 @@ var GS1DLaitable = [{
   "format": "X..90",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,90})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,90})"
 }, {
   "title": "Company internal information",
   "label": "INTERNAL",
@@ -3852,7 +3852,7 @@ var GS1DLaitable = [{
   "format": "X..90",
   "type": "D",
   "fixedLength": false,
-  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x39\\x41-\\x5A\\x5F\\x61-\\x7A]{0,90})"
+  "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,90})"
 }]; // Element Strings with predefined length using GS1 Application Identifiers, as defined in GS1 Gen Specs - see Figure 7.8.4-2 of GS1 Gen Specs v18 at https://www.gs1.org/docs/barcodes/GS1_General_Specifications.pdf
 
 var fixedLengthTable = {
