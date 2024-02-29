@@ -1,5 +1,5 @@
 # GS1DigitalLinkCompressionPrototype
-This is a JavaScript toolkit for translating between GS1 element strings and GS1 Digital Link URIs. It includes reversible compression functions, as defined in the [GS1 Digital Link standard](https://www.gs1.org/standards/gs1-digital-link).
+This is a JavaScript toolkit for translating between GS1 element strings and GS1 Digital Link URIs. It includes reversible compression functions, as defined in the [GS1 Digital Link standard](https://www.gs1.org/standards/gs1-digital-link). Please note the [legal disclaimer](https://ref.gs1.org/gs1/standards-disclaimer/) that applies to all GS1 standards.
 
 
 * [Introduction and status](#introduction)
