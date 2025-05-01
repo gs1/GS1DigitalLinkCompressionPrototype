@@ -3958,7 +3958,7 @@ class GS1DigitalLinkToolkit {
     {
         "title": "National Healthcare Reimbursement Number (NHRN) - Italy AIC",
         "label": "NHRN AIC",
-        "ai": "715",
+        "ai": "716",
         "format": "X..20",
         "type": "D",
         "fixedLength": false,
