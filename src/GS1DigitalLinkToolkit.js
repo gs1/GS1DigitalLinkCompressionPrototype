@@ -4817,30 +4817,23 @@ class GS1DigitalLinkToolkit {
 		elementStrings=elementStrings.replace(/^(]C1|]e0|]d2|]Q3)/ , '');
 
 		// check if the initial AI is enclosed within round brackets
-		let re=new RegExp("^\\((\\d{2,4}?)\\)");
+		let re=new RegExp("\\((\\d{2,4})\\)","g");
+		// do this if the input is a bracketed element string
 		if (re.test(elementStrings)) {
-			// do this if the input is a bracketed element string
-			let r1=new RegExp("\\((\\d{2,4}?)\\)|([^(]+)","g");
+
 			let aikeys = Object.keys(this.aiRegex);
+			let arr2= elementStrings.split(re).splice(1,);			
+			let n=arr2.length;
 			let obj={};
-			let k;
-			if (r1.test(elementStrings)) {
-				let results=elementStrings.match(r1);
-				for (let a in results) {
-					if (a%2 == 0) {
-						let l=results[a].length;
-						k=results[a].substr(1,(l-2));
-					} else {
-						if (aikeys.includes(k)) {
-							if (this.aiRegex[k].test(results[a])) {
-								obj[k]=results[a];
-							} else {
-								throw new Error("SYNTAX ERROR: invalid syntax for value of ("+k+") : "+results[a]);
-							}
-						}
-					}
+			for (let i =0; i<(n-1)/2; i++){
+				let aikey = arr2[2*i];
+				if (aikeys.includes(aikey)) {
+					obj[aikey]=arr2[2*i+1];			
+				} else {
+					throw new Error("SYNTAX ERROR: invalid syntax for value of ("+aikey+") : "+arr2[2*i+1]);
 				}
 			}
+
 			return obj;
 		} else {
 			// else do this if the input is an unbracketed element string
