@@ -4080,7 +4080,7 @@ class GS1DigitalLinkToolkit {
         "format": "N14+X..16",
         "type": "I",
         "fixedLength": false,
-        "checkDigit": "13",
+        "checkDigit": "14",
         "regex": "(\\d{14})([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,16})"
     },
     {
