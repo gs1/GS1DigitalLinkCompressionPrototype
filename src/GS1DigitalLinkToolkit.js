@@ -3613,6 +3613,16 @@ class GS1DigitalLinkToolkit {
         "regex": "(\\d{13})"
     },
     {
+        "title": "Identification of a party by Global Location Number",
+        "label": "PARTY",
+        "ai": "417",
+        "format": "N13",
+        "type": "I",
+        "fixedLength": true,
+        "checkDigit": "L",
+        "regex": "(\\d{13})"
+    },
+    {
         "title": "Ship to - Deliver to postal code within a single postal authority",
         "label": "SHIP TO POST",
         "ai": "420",
@@ -4182,7 +4192,7 @@ class GS1DigitalLinkToolkit {
         "label": "GMN (for medical devices, the default, global data title is BUDI-DI )",
         "ai": "8013",
         "format": "X..30",
-        "type": "D",
+        "type": "I",
         "fixedLength": false,
         "regex": "([\\x21-\\x22\\x25-\\x2F\\x30-\\x3F\\x41-\\x5A\\x5F\\x61-\\x7A]{0,30})"
     },
